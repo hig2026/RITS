@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="RITS lists free-to-access jobs that are worldwide remote or explicitly visa-friendly for Indian nationals."
+    />
+    <title>RITS — Verified Global Jobs</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="RITS home">
+          <span class="brand-mark">R</span>
+          <span>RITS Jobs</span>
+        </a>
+        <div class="nav-links">
+          <a href="#jobs">Jobs</a>
+          <a href="#method">Method</a>
+          <a href="#future">Future</a>
+        </div>
+      </nav>
+
+      <section id="top" class="hero-grid">
+        <div>
+          <p class="eyebrow">No signup • Free stack • India-friendly</p>
+          <h1>Curated jobs for globally mobile Indian applicants.</h1>
+          <p class="lead">
+            RITS focuses on ESL tutoring, analytics/data science, AI training,
+            AI agents, and AI development roles that are either work-from-anywhere
+            or explicitly visa-sponsorship friendly.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#jobs">Browse verified jobs</a>
+            <a class="button secondary" href="docs/research-playbook.md">Review vetting playbook</a>
+            <a class="button secondary" href="docs/deployment.md">Preview & deploy</a>
+          </div>
+        </div>
+        <aside class="audit-card" aria-label="Current curation policy">
+          <h2>Listing bar</h2>
+          <ul>
+            <li>≥90% confidence India eligibility</li>
+            <li>Worldwide remote or sponsorship track record</li>
+            <li>Company credibility scored before listing</li>
+            <li>Original job source linked; no copied long JDs</li>
+          </ul>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="filters-panel" aria-labelledby="filters-title">
+        <div>
+          <p class="eyebrow">Focused search</p>
+          <h2 id="filters-title">Filter the vetted list</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Job filters">
+          <label>
+            Category
+            <select id="category-filter">
+              <option value="all">All categories</option>
+            </select>
+          </label>
+          <label>
+            Work mode
+            <select id="mode-filter">
+              <option value="all">All modes</option>
+              <option value="Worldwide Remote">Worldwide remote</option>
+              <option value="Visa Sponsorship">Visa sponsorship</option>
+            </select>
+          </label>
+          <label>
+            Minimum company score
+            <select id="score-filter">
+              <option value="0">Any score</option>
+              <option value="3.5">3.5+ stars</option>
+              <option value="4">4+ stars</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section id="jobs" class="section" aria-labelledby="jobs-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Verified listings</p>
+            <h2 id="jobs-title">Open roles</h2>
+          </div>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </div>
+        <div id="jobs-grid" class="jobs-grid"></div>
+        <p id="empty-state" class="empty-state" hidden>
+          No jobs match those filters. Try lowering the score threshold or changing the category.
+        </p>
+      </section>
+
+      <section id="method" class="section method" aria-labelledby="method-title">
+        <p class="eyebrow">Credibility model</p>
+        <h2 id="method-title">Five-star score built for cautious applicants</h2>
+        <div class="score-grid">
+          <article>
+            <h3>Culture & safety</h3>
+            <p>Signals from credible employee reviews, turnover warnings, and contractor treatment.</p>
+          </article>
+          <article>
+            <h3>Work-life balance</h3>
+            <p>Scheduling flexibility, async practices, realistic quotas, and paid/unpaid labor boundaries.</p>
+          </article>
+          <article>
+            <h3>DEI & global access</h3>
+            <p>Evidence that applicants outside the US/EU are accepted without nationality ambiguity.</p>
+          </article>
+          <article>
+            <h3>Mobility & growth</h3>
+            <p>Internal mobility, upskilling, repeat hiring, and pathways from contract to richer work.</p>
+          </article>
+          <article>
+            <h3>Legal & pay hygiene</h3>
+            <p>Employee-related lawsuit checks, wage clarity, payment reputation, and compliance posture.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="future" class="section future" aria-labelledby="future-title">
+        <div>
+          <p class="eyebrow">Ready for expansion</p>
+          <h2 id="future-title">Structure reserved for future registrations</h2>
+          <p>
+            The current release is intentionally static and no-signup. The codebase keeps clean seams for
+            profiles, saved jobs, moderator queues, and applicant notes without forcing an account today.
+          </p>
+        </div>
+        <ul class="future-list">
+          <li><strong>Profiles:</strong> optional applicant preference storage.</li>
+          <li><strong>Moderation:</strong> reviewer status and confidence logs.</li>
+          <li><strong>Alerts:</strong> email or RSS only after the user opts in.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>RITS is a free static prototype. Always verify job details on the employer/source site before applying.</p>
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
