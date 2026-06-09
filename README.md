@@ -16,7 +16,6 @@ The site is intentionally static so it can be built, deployed, and hosted for fr
 - A no-auth placeholder seam for future registrations (`src/services/auth.js`)
 - A reviewer playbook for job eligibility and company-credibility research (`docs/research-playbook.md`)
 - Built-in Node tests (`tests/scoring.test.js`)
-- A committed GitHub Pages workflow for free public hosting (`.github/workflows/pages.yml`)
 
 ## Free stack
 
@@ -31,35 +30,17 @@ The site is intentionally static so it can be built, deployed, and hosted for fr
 
 ## Run locally
 
-Serve the source files directly:
-
 ```bash
 npm start
 ```
 
 Open <http://localhost:4173>.
 
-Preview the production artifact exactly as GitHub Pages will receive it:
-
-```bash
-npm run preview
-```
-
-Open <http://127.0.0.1:4173/>.
-
 ## Test
 
 ```bash
 npm test
 ```
-
-```bash
-npm run smoke
-```
-
-## Hosting
-
-The app is ready for free GitHub Pages hosting through the committed workflow at `.github/workflows/pages.yml`. Push `main` or `master`, set Pages source to **GitHub Actions**, and the workflow publishes `dist/` to the `github-pages` environment. See [`docs/deployment.md`](docs/deployment.md) for the turnkey preview and deployment flow.
 
 ## Data model
 

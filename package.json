@@ -4,10 +4,7 @@
   "private": true,
   "description": "A free, no-signup, static job listings page for globally eligible ESL, analytics/data science, and AI training/development roles.",
   "scripts": {
-    "build": "node scripts/build.mjs",
     "start": "python3 -m http.server 4173",
-    "preview": "npm run build && python3 -m http.server 4173 --directory dist",
-    "smoke": "npm run build && node scripts/smoke-test.mjs",
     "test": "node --test tests/*.test.js"
   },
   "keywords": [
