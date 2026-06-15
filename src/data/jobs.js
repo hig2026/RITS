@@ -1,3 +1,5 @@
+import { WORK_MODES } from '../constants.js';
+
 export const jobs = [
   /* ---- ESL Tutoring ---- */
   {
@@ -5,7 +7,7 @@ export const jobs = [
     title: 'Online English Tutor',
     company: 'Preply',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Marketplace open to all nationalities. Non-native speakers explicitly accepted. Tutors set own rates.',
     confidence: 0.97,
     score: 3.8,
@@ -27,7 +29,7 @@ export const jobs = [
     title: 'Online English Teacher / Community Tutor',
     company: 'italki',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert).',
     confidence: 0.97,
     score: 3.9,
@@ -49,7 +51,7 @@ export const jobs = [
     title: 'ESL / EFL Teacher — Online Platform',
     company: 'Amazing Talker',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Taiwan-based marketplace open to all nationalities. Teachers set own rates. Strong demand for English.',
     confidence: 0.97,
     score: 3.7,
@@ -71,7 +73,7 @@ export const jobs = [
     title: 'ESL Teacher — Online Private Lessons',
     company: 'Verbling',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Open marketplace for language teachers worldwide. Non-native speakers accepted.',
     confidence: 0.96,
     score: 3.6,
@@ -93,7 +95,7 @@ export const jobs = [
     title: 'Teach English Online — Engoo',
     company: 'Engoo / DMM Eikaiwa',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate.',
     confidence: 0.96,
     score: 3.5,
@@ -115,7 +117,7 @@ export const jobs = [
     title: 'Online ESL Teacher — All Nationalities Welcome',
     company: 'TEFL.com listed employer',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'TEFL.com listing explicitly states all nationalities. Online role with no location restriction.',
     confidence: 0.96,
     score: 3.4,
@@ -137,7 +139,7 @@ export const jobs = [
     title: 'Online English Teacher (ESL Tutor)',
     company: 'TEFL.com listed employer',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'TEFL.com online teaching listing. Remote with no explicit country restriction in listing.',
     confidence: 0.95,
     score: 3.4,
@@ -159,7 +161,7 @@ export const jobs = [
     title: 'Online English Conversation Tutor',
     company: 'Cambly',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Popular conversation platform. Historically native-speaker focused but expanding.',
     confidence: 0.85,
     score: 3.5,
@@ -183,7 +185,7 @@ export const jobs = [
     title: 'Data Scientist / Analyst — AI Training',
     company: 'Turing',
     category: 'Analytics / Data Science',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Global contractor pool; source indexes India-specific AI-training roles and describes openings as available from any location.',
     confidence: 0.95,
     score: 3.8,
@@ -205,7 +207,7 @@ export const jobs = [
     title: 'Statistics & Python Expert — Freelance AI Trainer',
     company: 'Mindrift',
     category: 'Analytics / Data Science',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Remote AI-training role indexed as remote without country restriction in the current source list.',
     confidence: 0.95,
     score: 3.5,
@@ -229,7 +231,7 @@ export const jobs = [
     title: 'MLE Bench — ML Engineers',
     company: 'Turing',
     category: 'AI Development',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Open global AI-training marketplace; India page lists role with no local office requirement in source summary.',
     confidence: 0.95,
     score: 3.8,
@@ -251,7 +253,7 @@ export const jobs = [
     title: 'Full-stack / Backend Developers — LLM Focused',
     company: 'CloudDevs',
     category: 'AI Development',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Indexed as "Anywhere in the World"; suitable for Indian nationals working remotely when client contract permits.',
     confidence: 0.95,
     score: 3.7,
@@ -275,7 +277,7 @@ export const jobs = [
     title: 'First-Person Video AI Trainer',
     company: 'Toloka AI',
     category: 'AI Training',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Source summary explicitly labels the role worldwide, making India eligibility likely above the confidence bar.',
     confidence: 0.95,
     score: 3.6,
@@ -294,10 +296,4 @@ export const jobs = [
   }
 ];
 
-export const scoreCriteria = [
-  'cultureAndSafety',
-  'workLifeBalance',
-  'deiAndGlobalAccess',
-  'mobilityAndGrowth',
-  'legalAndPayHygiene'
-];
+
