@@ -21,42 +21,45 @@
           <a href="#jobs">Jobs</a>
           <a href="#method">Method</a>
           <a href="#future">Future</a>
+          <button id="dark-toggle" class="dark-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
         </div>
       </nav>
 
       <section id="top" class="hero-grid">
-        <div>
-          <p class="eyebrow">No signup • Free stack • India-friendly</p>
-          <h1>Curated jobs for globally mobile Indian applicants.</h1>
-          <p class="lead">
-            RITS focuses on ESL tutoring, analytics/data science, AI training,
-            AI agents, and AI development roles that are either work-from-anywhere
-            or explicitly visa-sponsorship friendly.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#jobs">Browse verified jobs</a>
-            <a class="button secondary" href="docs/research-playbook.md">Review vetting playbook</a>
-          </div>
+        <p class="eyebrow">No signup · Free stack · India-friendly</p>
+        <h1>Curated jobs for globally mobile Indian applicants</h1>
+        <p class="lead">
+          ESL tutoring, analytics/data science, AI training, AI agents, and AI
+          development roles that are work-from-anywhere or visa-sponsorship friendly.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#jobs">Browse jobs</a>
+          <a class="button secondary" href="docs/research-playbook.md">Vetting playbook</a>
         </div>
-        <aside class="audit-card" aria-label="Current curation policy">
-          <h2>Listing bar</h2>
+        <div class="audit-card">
+          <strong>Listing bar</strong>
           <ul>
-            <li>≥90% confidence India eligibility</li>
+            <li>Global accessibility filter: open to all nationalities</li>
+            <li>≥95% confidence India eligibility (2.5% margin of error)</li>
             <li>Worldwide remote or sponsorship track record</li>
             <li>Company credibility scored before listing</li>
-            <li>Original job source linked; no copied long JDs</li>
+            <li>Link goes to the actual job description page</li>
           </ul>
-        </aside>
+        </div>
       </section>
     </header>
 
     <main>
       <section class="filters-panel" aria-labelledby="filters-title">
         <div>
-          <p class="eyebrow">Focused search</p>
-          <h2 id="filters-title">Filter the vetted list</h2>
+          <p class="eyebrow">Search</p>
+          <h2 id="filters-title">Filter listings</h2>
         </div>
         <div class="filters" role="group" aria-label="Job filters">
+          <label>
+            Text search
+            <input id="search-input" type="search" placeholder="Type to search… (press /)" autocomplete="off" />
+          </label>
           <label>
             Category
             <select id="category-filter">
@@ -72,7 +75,7 @@
             </select>
           </label>
           <label>
-            Minimum company score
+            Min. score
             <select id="score-filter">
               <option value="0">Any score</option>
               <option value="3.5">3.5+ stars</option>
@@ -84,24 +87,21 @@
 
       <section id="jobs" class="section" aria-labelledby="jobs-title">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">Verified listings</p>
-            <h2 id="jobs-title">Open roles</h2>
-          </div>
+          <h2 id="jobs-title">Open roles</h2>
           <p id="result-count" class="result-count" aria-live="polite"></p>
         </div>
         <div id="jobs-grid" class="jobs-grid"></div>
         <p id="empty-state" class="empty-state" hidden>
-          No jobs match those filters. Try lowering the score threshold or changing the category.
+          No jobs match those filters.
         </p>
       </section>
 
-      <section id="method" class="section method" aria-labelledby="method-title">
-        <p class="eyebrow">Credibility model</p>
-        <h2 id="method-title">Five-star score built for cautious applicants</h2>
+      <section id="method" class="section" aria-labelledby="method-title">
+        <h2 id="method-title">Credibility model</h2>
+        <p>Five-star score built for cautious applicants:</p>
         <div class="score-grid">
           <article>
-            <h3>Culture & safety</h3>
+            <h3>Culture &amp; safety</h3>
             <p>Signals from credible employee reviews, turnover warnings, and contractor treatment.</p>
           </article>
           <article>
@@ -109,29 +109,26 @@
             <p>Scheduling flexibility, async practices, realistic quotas, and paid/unpaid labor boundaries.</p>
           </article>
           <article>
-            <h3>DEI & global access</h3>
+            <h3>DEI &amp; global access</h3>
             <p>Evidence that applicants outside the US/EU are accepted without nationality ambiguity.</p>
           </article>
           <article>
-            <h3>Mobility & growth</h3>
+            <h3>Mobility &amp; growth</h3>
             <p>Internal mobility, upskilling, repeat hiring, and pathways from contract to richer work.</p>
           </article>
           <article>
-            <h3>Legal & pay hygiene</h3>
+            <h3>Legal &amp; pay hygiene</h3>
             <p>Employee-related lawsuit checks, wage clarity, payment reputation, and compliance posture.</p>
           </article>
         </div>
       </section>
 
       <section id="future" class="section future" aria-labelledby="future-title">
-        <div>
-          <p class="eyebrow">Ready for expansion</p>
-          <h2 id="future-title">Structure reserved for future registrations</h2>
-          <p>
-            The current release is intentionally static and no-signup. The codebase keeps clean seams for
-            profiles, saved jobs, moderator queues, and applicant notes without forcing an account today.
-          </p>
-        </div>
+        <h2 id="future-title">Future</h2>
+        <p>
+          The current release is static and no-signup. The codebase keeps seams for
+          profiles, saved jobs, moderator queues, and applicant notes.
+        </p>
         <ul class="future-list">
           <li><strong>Profiles:</strong> optional applicant preference storage.</li>
           <li><strong>Moderation:</strong> reviewer status and confidence logs.</li>
@@ -142,6 +139,7 @@
 
     <footer class="footer">
       <p>RITS is a free static prototype. Always verify job details on the employer/source site before applying.</p>
+      <p class="kbd-hints">Press <kbd>/</kbd> to search · <kbd>d</kbd> to toggle dark mode</p>
     </footer>
 
     <script type="module" src="src/app.js"></script>
