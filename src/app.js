@@ -1,5 +1,6 @@
 import { jobs } from './data/jobs.js';
-import { formatStars, isEligibleForListing } from './services/scoring.js';
+import { formatStars, formatConfidence, isEligibleForListing } from './services/scoring.js';
+import { renderListItems, renderTags, externalLink } from './helpers/dom.js';
 
 const eligibleJobs = jobs.filter(isEligibleForListing);
 
@@ -43,7 +44,7 @@ function renderJobs() {
     article.innerHTML = `
       <div class="job-card__topline">
         <span class="pill">${job.category}</span>
-        <span class="confidence">${Math.round(job.confidence * 100)}% confidence</span>
+        <span class="confidence">${formatConfidence(job.confidence)} confidence</span>
       </div>
       <h3>${job.title}</h3>
       <p class="company">${job.company}</p>
@@ -59,15 +60,15 @@ function renderJobs() {
       <details>
         <summary>Credibility notes</summary>
         <ul>
-          ${job.credibilityNotes.map((note) => `<li>${note}</li>`).join('')}
+          ${renderListItems(job.credibilityNotes)}
         </ul>
       </details>
       <div class="tags">
-        ${job.tags.map((tag) => `<span>${tag}</span>`).join('')}
+        ${renderTags(job.tags)}
       </div>
       <div class="job-actions">
-        <a class="button primary" href="${job.sourceUrl}" target="_blank" rel="noopener noreferrer">View JD source</a>
-        <a class="button secondary" href="${job.companyUrl}" target="_blank" rel="noopener noreferrer">Company site</a>
+        ${externalLink(job.sourceUrl, 'View JD source', 'button primary')}
+        ${externalLink(job.companyUrl, 'Company site', 'button secondary')}
       </div>
       <p class="verified">Verified ${job.verifiedOn}</p>
     `;
