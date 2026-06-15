@@ -57,6 +57,12 @@ function renderJobs() {
     const hiringNote = job.hiringTendencyNote
       ? `<p class="hiring-note"><em>${esc(job.hiringTendencyNote)}</em></p>`
       : '';
+    const platformBadge = job.platformWarning
+      ? `<p class="platform-warning">${esc(job.platformWarning)}</p>`
+      : '';
+    const payDisparity = job.payDisparityWarning
+      ? `<p class="pay-disparity-warning">⚠ Pay disparity: ${esc(job.payDisparityWarning)}</p>`
+      : '';
     article.innerHTML = `
       <div class="job-card__topline">
         <span class="pill">${esc(job.category)}</span>
@@ -70,6 +76,8 @@ function renderJobs() {
       </div>
       <p>${esc(job.eligibility)}</p>
       ${hiringNote}
+      ${platformBadge}
+      ${payDisparity}
       <div class="score" aria-label="Company credibility score ${job.score} out of 5">
         <strong>${job.score.toFixed(1)}</strong>
         <span>${formatStars(job.score)}</span>
