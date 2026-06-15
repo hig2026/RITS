@@ -1,10 +1,12 @@
+import { WORK_MODES } from '../constants.js';
+
 export const jobs = [
   {
     id: 'turing-data-scientist-ai-training',
     title: 'Data Scientist / Analyst — AI Training',
     company: 'Turing',
     category: 'Analytics / Data Science',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Global contractor pool; source indexes India-specific AI-training roles and describes openings as available from any location.',
     confidence: 0.92,
     score: 3.8,
@@ -24,7 +26,7 @@ export const jobs = [
     title: 'MLE Bench — ML Engineers',
     company: 'Turing',
     category: 'AI Development',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Open global AI-training marketplace; India page lists role with no local office requirement in source summary.',
     confidence: 0.91,
     score: 3.8,
@@ -44,7 +46,7 @@ export const jobs = [
     title: 'Statistics & Python Expert — Freelance AI Trainer',
     company: 'Mindrift',
     category: 'Analytics / Data Science',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Remote AI-training role indexed as remote without country restriction in the current source list.',
     confidence: 0.9,
     score: 3.5,
@@ -64,7 +66,7 @@ export const jobs = [
     title: 'First-Person Video AI Trainer',
     company: 'Toloka AI',
     category: 'AI Training',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Source summary explicitly labels the role worldwide, making India eligibility likely above the confidence bar.',
     confidence: 0.93,
     score: 3.6,
@@ -84,8 +86,8 @@ export const jobs = [
     title: 'Full-stack / Backend Developers — LLM Focused',
     company: 'CloudDevs',
     category: 'AI Development',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Indexed as “Anywhere in the World”; suitable for Indian nationals working remotely when client contract permits.',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
+    eligibility: 'Indexed as "Anywhere in the World"; suitable for Indian nationals working remotely when client contract permits.',
     confidence: 0.91,
     score: 3.7,
     pay: 'Contract rate varies by client engagement',
@@ -104,7 +106,7 @@ export const jobs = [
     title: 'Online English Teacher — CELTA / CertTESOL',
     company: 'TEFL.com listed employer',
     category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
+    workMode: WORK_MODES.WORLDWIDE_REMOTE,
     eligibility: 'Source summary names India among accepted remote teacher locations and describes worldwide online learners.',
     confidence: 0.9,
     score: 3.4,
@@ -119,12 +121,4 @@ export const jobs = [
     ],
     tags: ['ESL', 'CELTA', 'Remote teaching']
   }
-];
-
-export const scoreCriteria = [
-  'cultureAndSafety',
-  'workLifeBalance',
-  'deiAndGlobalAccess',
-  'mobilityAndGrowth',
-  'legalAndPayHygiene'
 ];
