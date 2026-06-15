@@ -21,6 +21,7 @@
           <a href="#jobs">Jobs</a>
           <a href="#method">Method</a>
           <a href="#future">Future</a>
+          <button id="dark-toggle" class="dark-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
         </div>
       </nav>
 
@@ -57,6 +58,10 @@
           <h2 id="filters-title">Filter the vetted list</h2>
         </div>
         <div class="filters" role="group" aria-label="Job filters">
+          <label>
+            Search
+            <input id="search-input" type="search" placeholder="Type to search… (press / )" autocomplete="off" />
+          </label>
           <label>
             Category
             <select id="category-filter">
@@ -142,6 +147,7 @@
 
     <footer class="footer">
       <p>RITS is a free static prototype. Always verify job details on the employer/source site before applying.</p>
+      <p class="kbd-hints">Press <kbd>/</kbd> to search · <kbd>d</kbd> to toggle dark mode</p>
     </footer>
 
     <script type="module" src="src/app.js"></script>
