@@ -1,5 +1,9 @@
 import { jobs } from './data/jobs.js';
 import { formatStars, isEligibleForListing } from './services/scoring.js';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+// Initialize Vercel Speed Insights
+injectSpeedInsights();
 
 const eligibleJobs = jobs.filter(isEligibleForListing);
 
