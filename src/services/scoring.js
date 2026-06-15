@@ -8,7 +8,7 @@ export function formatStars(score) {
 }
 
 export function isEligibleForListing(job) {
-  return job.confidence >= 0.9 && ['Worldwide Remote', 'Visa Sponsorship'].includes(job.workMode);
+  return job.confidence >= 0.95 && ['Worldwide Remote', 'Visa Sponsorship'].includes(job.workMode);
 }
 
 export function getCriteriaCount() {
