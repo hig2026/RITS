@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build & Deploy
     needs: test
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
