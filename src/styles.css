@@ -333,6 +333,34 @@ select:focus, input[type="search"]:focus {
   background: var(--caution-bg);
 }
 
+/* Commission-based platform warning */
+.platform-warning {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.3rem 0;
+  padding: 0.2rem 0.4rem;
+  border-left: 3px solid var(--link);
+  background: var(--surface);
+  font-style: italic;
+}
+
+/* Pay disparity warning — more severe than caution */
+.pay-disparity-warning {
+  font-size: 0.8rem;
+  color: #cc0000;
+  margin: 0.3rem 0;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #cc0000;
+  background: #fff0f0;
+  font-weight: bold;
+}
+
+[data-theme="dark"] .pay-disparity-warning {
+  color: #ff6666;
+  border-color: #ff6666;
+  background: #331111;
+}
+
 details { border-top: 1px solid var(--border-light); padding-top: 0.4rem; }
 
 summary {

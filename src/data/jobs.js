@@ -20,7 +20,10 @@ export const jobs = [
     ],
     tags: ['ESL', 'Tutoring', 'Online', 'Freelance'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Non-native speakers accepted. Tutors set own rates and schedules.'
+    hiringTendencyNote: 'Open to all nationalities. Non-native speakers accepted. Tutors set own rates and schedules.',
+    platformModel: 'commission',
+    platformWarning: 'Commission-based platform — no guaranteed students. You find and retain your own learners.',
+    payDisparityWarning: null
   },
   {
     id: 'esl-italki-english-teacher',
@@ -42,12 +45,15 @@ export const jobs = [
     ],
     tags: ['ESL', 'Tutoring', 'Online', 'Community Tutor'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert). Non-native English speakers welcome.'
+    hiringTendencyNote: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert). Non-native English speakers welcome.',
+    platformModel: 'commission',
+    platformWarning: 'Commission-based platform — no guaranteed students. italki takes 15% of lesson fees.',
+    payDisparityWarning: null
   },
   {
     id: 'esl-amazingtalker-efl-teacher',
     title: 'ESL / EFL Teacher — Online Platform',
-    company: 'Amazing Talker',
+    company: 'AmazingTalker',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
     eligibility: 'Taiwan-based marketplace open to all nationalities. Teachers set own rates. Strong demand for English.',
@@ -64,7 +70,10 @@ export const jobs = [
     ],
     tags: ['ESL', 'EFL', 'Online', 'Tutoring'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Taiwan-based. Strong demand for English teachers. Teachers set own rates.'
+    hiringTendencyNote: 'Open to all nationalities. Taiwan-based. Strong demand for English teachers. Teachers set own rates.',
+    platformModel: 'commission',
+    platformWarning: 'Commission-based platform — no guaranteed students. Platform takes a commission on each lesson.',
+    payDisparityWarning: null
   },
   {
     id: 'esl-verbling-private-lessons',
@@ -86,7 +95,10 @@ export const jobs = [
     ],
     tags: ['ESL', 'Tutoring', 'Online'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Open marketplace for language teachers worldwide. Non-native speakers accepted. Teachers set own rates.'
+    hiringTendencyNote: 'Open marketplace for language teachers worldwide. Non-native speakers accepted. Teachers set own rates.',
+    platformModel: 'commission',
+    platformWarning: 'Commission-based platform — no guaranteed students. Acquired by Babbel; verify current student volume.',
+    payDisparityWarning: null
   },
   {
     id: 'esl-engoo-teach-online',
@@ -94,10 +106,10 @@ export const jobs = [
     company: 'Engoo / DMM Eikaiwa',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate.',
+    eligibility: 'Global tutor recruitment. Non-native English speakers accepted but historically paid significantly less.',
     confidence: 0.96,
-    score: 3.5,
-    pay: 'Fixed per-lesson rate set by platform',
+    score: 2.8,
+    pay: 'Fixed per-lesson rate set by platform (see pay disparity warning)',
     sourceUrl: 'https://engoo.com/teachers',
     companyUrl: 'https://engoo.com/',
     verifiedOn: '2026-06-15',
@@ -108,7 +120,10 @@ export const jobs = [
     ],
     tags: ['ESL', 'Conversation', 'Online'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate set by platform.'
+    hiringTendencyNote: 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate set by platform.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: 'Documented pay discrimination: in 2015, non-native speakers were paid USD 1.50-3/hr vs USD 10/hr for natives (>70% gap). Recent reports suggest the gap persists. Non-native teachers may receive substantially less for identical work.'
   },
   {
     id: 'esl-tefl-all-nationalities',
@@ -130,7 +145,10 @@ export const jobs = [
     ],
     tags: ['ESL', 'TEFL/TESOL', 'Online', 'Remote teaching'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Listing explicitly states all nationalities welcome. High booking rate advertised.'
+    hiringTendencyNote: 'Listing explicitly states all nationalities welcome. High booking rate advertised.',
+    platformModel: 'job-board',
+    platformWarning: null,
+    payDisparityWarning: null
   },
   {
     id: 'esl-tefl-online-esl-tutor',
@@ -152,7 +170,110 @@ export const jobs = [
     ],
     tags: ['ESL', 'Tutoring', 'Online', 'Remote teaching'],
     nationalityCaution: null,
-    hiringTendencyNote: null
+    hiringTendencyNote: null,
+    platformModel: 'job-board',
+    platformWarning: null,
+    payDisparityWarning: null
+  },
+  {
+    id: 'esl-lingoda-online-teacher',
+    title: 'Online English Teacher — Lingoda',
+    company: 'Lingoda',
+    category: 'ESL Tutoring',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Berlin-based online language school. Hires native and non-native speakers with teaching certification.',
+    confidence: 0.96,
+    score: 3.7,
+    pay: '~€8-14 per 60-min group class; higher for private lessons',
+    sourceUrl: 'https://www.lingoda.com/en/teacher/',
+    companyUrl: 'https://www.lingoda.com/',
+    verifiedOn: '2026-06-15',
+    credibilityNotes: [
+      'Established online language school based in Berlin. Structured curriculum with lesson materials provided.',
+      'Hires both native and qualified non-native English speakers. Teaching certificate (TEFL/CELTA or equivalent) required.',
+      'Fixed rate per class. Payment via bank transfer. Reliable payment history reported on Glassdoor.'
+    ],
+    tags: ['ESL', 'Online', 'Language school', 'Structured curriculum'],
+    nationalityCaution: null,
+    hiringTendencyNote: 'Hires native and non-native speakers with certifications. Structured curriculum — less prep work for teachers.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: null
+  },
+  {
+    id: 'esl-open-english-online-teacher',
+    title: 'Online English Teacher — Open English',
+    company: 'Open English',
+    category: 'ESL Tutoring',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Online English school for Latin American students. Hires globally. Preference for native speakers but non-natives with credentials accepted.',
+    confidence: 0.95,
+    score: 3.5,
+    pay: '$8-15/hr depending on experience and class type',
+    sourceUrl: 'https://www.openenglish.com/en/teach/',
+    companyUrl: 'https://www.openenglish.com/',
+    verifiedOn: '2026-06-15',
+    credibilityNotes: [
+      'Large online English school focused on Latin American market. Live classes 24/7.',
+      'Non-native teachers with strong credentials accepted. Bachelor\'s degree and TEFL preferred.',
+      'Mixed Glassdoor reviews — flexibility praised, pay considered on the lower end.'
+    ],
+    tags: ['ESL', 'Online', 'Latin American students'],
+    nationalityCaution: null,
+    hiringTendencyNote: 'Hires globally for LatAm student base. Non-natives with credentials accepted. 24/7 class availability.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: null
+  },
+  {
+    id: 'esl-nativecamp-online-teacher',
+    title: 'Online English Conversation Teacher — NativeCamp',
+    company: 'NativeCamp',
+    category: 'ESL Tutoring',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Japanese online conversation platform. Despite the name, accepts non-native speakers. Large Filipino teacher workforce.',
+    confidence: 0.95,
+    score: 3.4,
+    pay: '$4-8/hr non-peak; higher during Japan peak hours',
+    sourceUrl: 'https://nativecamp.net/en/tutors/info',
+    companyUrl: 'https://nativecamp.net/',
+    verifiedOn: '2026-06-15',
+    credibilityNotes: [
+      'Large Japanese online English conversation platform. Students pay subscription for unlimited lessons.',
+      'The name "NativeCamp" is misleading — they hire non-native speakers. Filipino teachers form a large workforce.',
+      'Pay is on the lower end. Flexible scheduling but requires availability during Japan peak hours for best earnings.'
+    ],
+    tags: ['ESL', 'Conversation', 'Online', 'Japan market'],
+    nationalityCaution: null,
+    hiringTendencyNote: 'Accepts non-native speakers despite the name. Large Filipino teacher base. Best earnings during Japan peak hours.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: null
+  },
+  {
+    id: 'esl-eslcafe-polly-english',
+    title: 'Online ESL Teacher — Polly English (via Dave\'s ESL Cafe)',
+    company: 'Polly English',
+    category: 'ESL Tutoring',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Online ESL platform advertising on Dave\'s ESL Cafe. Open to native and non-native speakers.',
+    confidence: 0.95,
+    score: 3.3,
+    pay: '$16-30/hr advertised (verify actual rates)',
+    sourceUrl: 'https://www.eslcafe.com/jobs/international',
+    companyUrl: 'https://pollyenglish.com/',
+    verifiedOn: '2026-06-15',
+    credibilityNotes: [
+      'Smaller online ESL platform. Advertises $16-30/hr on Dave\'s ESL Cafe International board.',
+      'Open to native and non-native speakers. Limited independent reviews available.',
+      'Verify payment reliability and actual rates before committing. Source listing via Dave\'s ESL Cafe.'
+    ],
+    tags: ['ESL', 'Online', 'Remote', 'Dave\'s ESL Cafe'],
+    nationalityCaution: null,
+    hiringTendencyNote: 'Advertises $16-30/hr. Open to non-natives. Smaller platform — verify payment reliability.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: null
   },
   {
     id: 'esl-cambly-conversation-tutor',
@@ -174,32 +295,13 @@ export const jobs = [
     ],
     tags: ['ESL', 'Conversation', 'Online'],
     nationalityCaution: 'Native speaker preference noted; verify non-native acceptance',
-    hiringTendencyNote: 'Historically native-speaker-only; some reports of expanded acceptance. Verify current policy.'
+    hiringTendencyNote: 'Historically native-speaker-only; some reports of expanded acceptance. Verify current policy.',
+    platformModel: 'fixed-rate',
+    platformWarning: null,
+    payDisparityWarning: null
   },
 
   /* ---- Analytics / Data Science ---- */
-  {
-    id: 'turing-data-scientist-ai-training',
-    title: 'Data Scientist / Analyst — AI Training',
-    company: 'Turing',
-    category: 'Analytics / Data Science',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Global contractor pool; source indexes India-specific AI-training roles and describes openings as available from any location.',
-    confidence: 0.95,
-    score: 3.8,
-    pay: '$50–$80/hour listed by source aggregator',
-    sourceUrl: 'https://www.turing.com/jobs/data-scientist',
-    companyUrl: 'https://www.turing.com/jobs',
-    verifiedOn: '2026-06-09',
-    credibilityNotes: [
-      'Large AI-talent marketplace with repeat global hiring for coding, analytics, and LLM evaluation projects.',
-      'Contractor-style work can vary by project availability, so applicants should confirm payment terms before onboarding.',
-      'Included because India-targeted listings and broad global contractor sourcing meet the 95% eligibility threshold.'
-    ],
-    tags: ['AI training', 'SQL', 'Python', 'Data analysis'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Large global AI marketplace. Actively recruits from India. Contractor model with variable project availability.'
-  },
   {
     id: 'mindrift-statistics-python-ai-trainer',
     title: 'Statistics & Python Expert — Freelance AI Trainer',
@@ -220,53 +322,63 @@ export const jobs = [
     ],
     tags: ['Statistics', 'Python', 'Freelance', 'AI training'],
     nationalityCaution: null,
-    hiringTendencyNote: null
+    hiringTendencyNote: null,
+    platformModel: 'freelance',
+    platformWarning: null,
+    payDisparityWarning: null
   },
 
-  /* ---- AI Development ---- */
+  /* ---- Insurance / Reinsurance Analytics ---- */
   {
-    id: 'turing-mle-bench-ml-engineer',
-    title: 'MLE Bench — ML Engineers',
-    company: 'Turing',
-    category: 'AI Development',
+    id: 'insurance-cat-modelling-remote-analyst',
+    title: 'Catastrophe Modelling Analyst — Remote',
+    company: 'Various (insurance/reinsurance sector)',
+    category: 'Insurance / Reinsurance Analytics',
     workMode: 'Worldwide Remote',
-    eligibility: 'Open global AI-training marketplace; India page lists role with no local office requirement in source summary.',
+    eligibility: 'Niche remote roles in cat modelling. Requires RMS/AIR/Oasis expertise. Some firms hire globally for remote analytical work.',
     confidence: 0.95,
-    score: 3.8,
-    pay: '$40–$70/hour listed by source aggregator',
-    sourceUrl: 'https://www.turing.com/remote-developer-jobs/data-scientist',
-    companyUrl: 'https://www.turing.com/jobs',
-    verifiedOn: '2026-06-09',
+    score: 3.6,
+    pay: '$60-120k/year depending on experience and firm',
+    sourceUrl: 'https://www.theactuaryjobs.com/',
+    companyUrl: 'https://www.theactuaryjobs.com/',
+    verifiedOn: '2026-06-15',
     credibilityNotes: [
-      'Best fit for experienced ML engineers comfortable with project-based expert review work.',
-      'Score is moderated because marketplace roles can have inconsistent project continuity.',
-      'Applicant should verify whether the contract is direct with Turing or a client-specific program.'
+      'Cat modelling is a specialized field within insurance/reinsurance. Remote roles exist but are less common than in-office.',
+      'Key tools: RMS RiskLink, AIR Touchstone, Oasis LMF. Strong quantitative background required.',
+      'Major employers: Swiss Re, Munich Re, Guy Carpenter, Aon, Willis Towers Watson. Some hire remote analysts globally.',
+      'Indian professionals with actuarial qualifications (IAI, IFOA, SOA) are well-represented in this field.'
     ],
-    tags: ['ML engineering', 'LLM evaluation', 'Python'],
+    tags: ['Cat modelling', 'Insurance analytics', 'Actuarial', 'RMS', 'Reinsurance'],
     nationalityCaution: null,
-    hiringTendencyNote: null
+    hiringTendencyNote: 'Niche field with growing remote options. Indian actuarial professionals are well-represented. Check specific openings on actuarial job boards.',
+    platformModel: 'job-board',
+    platformWarning: null,
+    payDisparityWarning: null
   },
   {
-    id: 'clouddevs-fullstack-backend-llm',
-    title: 'Full-stack / Backend Developers — LLM Focused',
-    company: 'CloudDevs',
-    category: 'AI Development',
+    id: 'insurance-remote-analytics-data-scientist',
+    title: 'Insurance Analytics / Data Scientist — Remote',
+    company: 'Various (InsurTech / reinsurance)',
+    category: 'Insurance / Reinsurance Analytics',
     workMode: 'Worldwide Remote',
-    eligibility: 'Indexed as "Anywhere in the World"; suitable for Indian nationals working remotely when client contract permits.',
+    eligibility: 'Remote data science roles in insurance sector. Python/R, SQL, actuarial science background valued.',
     confidence: 0.95,
-    score: 3.7,
-    pay: 'Contract rate varies by client engagement',
-    sourceUrl: 'https://clouddevs.com/apply/',
-    companyUrl: 'https://clouddevs.com/jobs/',
-    verifiedOn: '2026-06-09',
+    score: 3.5,
+    pay: '$50-100k/year depending on role and firm',
+    sourceUrl: 'https://weworkremotely.com/',
+    companyUrl: 'https://weworkremotely.com/',
+    verifiedOn: '2026-06-15',
     credibilityNotes: [
-      'Talent marketplace model with remote client projects and screening before placement.',
-      'Applicants should confirm tax paperwork, payment rails, and client location restrictions before interviews.',
-      'Included because the listing source says anywhere in the world and the role aligns with AI/LLM development.'
+      'InsurTech sector increasingly hires remote data scientists. Roles span pricing, claims analytics, and risk modelling.',
+      'Python, R, SQL essential. Actuarial exams or insurance domain knowledge is a strong differentiator.',
+      'Source via We Work Remotely and similar remote job boards. Listings change frequently — check boards regularly.'
     ],
-    tags: ['LLM', 'Backend', 'Full-stack', 'Contract'],
+    tags: ['Insurance', 'Data science', 'Python', 'Risk modelling', 'Remote'],
     nationalityCaution: null,
-    hiringTendencyNote: null
+    hiringTendencyNote: 'Growing demand for remote insurance analytics. Indian professionals with actuarial + data science skills are competitive.',
+    platformModel: 'job-board',
+    platformWarning: null,
+    payDisparityWarning: null
   },
 
   /* ---- AI Training ---- */
@@ -290,7 +402,10 @@ export const jobs = [
     ],
     tags: ['Data annotation', 'Video', 'AI training'],
     nationalityCaution: null,
-    hiringTendencyNote: null
+    hiringTendencyNote: null,
+    platformModel: 'task-marketplace',
+    platformWarning: null,
+    payDisparityWarning: null
   }
 ];
 

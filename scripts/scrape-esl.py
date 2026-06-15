@@ -6,6 +6,11 @@ Uses Playwright (CDP) to scrape ESL/TEFL job boards for listings that pass
 the global-accessibility filter.
 
 Outputs scraped jobs as JSON compatible with src/data/jobs.js.
+
+Company vetting data is stored in src/data/companies.js (source boards and
+company profiles). This scraper checks that database before re-researching
+known companies. Source board base URLs are stable; individual job links
+are ephemeral and may go dead — always store the source board for re-scraping.
 """
 
 import json
