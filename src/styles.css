@@ -249,7 +249,7 @@ select:focus, input[type="search"]:focus {
   border-left: 2px solid var(--accent);
 }
 
-.platform-warning, .pay-disparity-warning {
+.platform-warning, .pay-disparity-warning, .regional-warning {
   font-size: 0.85em;
   margin: 0.5em 0;
   padding: 0.5em;
@@ -259,6 +259,11 @@ select:focus, input[type="search"]:focus {
 .pay-disparity-warning {
   border-color: var(--danger);
   color: var(--danger);
+}
+
+.regional-warning {
+  border-color: var(--border);
+  font-style: italic;
 }
 
 details { font-size: 0.85em; margin: 0.75em 0; }

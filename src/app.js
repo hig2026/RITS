@@ -63,6 +63,9 @@ function renderJobs() {
     const payDisparity = job.payDisparityWarning
       ? `<p class="pay-disparity-warning">⚠ Pay disparity: ${esc(job.payDisparityWarning)}</p>`
       : '';
+    const regionalPay = job.regionalPayWarning
+      ? `<p class="regional-warning">Note: ${esc(job.regionalPayWarning)}</p>`
+      : '';
     article.innerHTML = `
       <div class="job-card__topline">
         <span class="pill">${esc(job.category)}</span>
@@ -78,6 +81,7 @@ function renderJobs() {
       ${hiringNote}
       ${platformBadge}
       ${payDisparity}
+      ${regionalPay}
       <div class="score" aria-label="Company credibility score ${job.score} out of 5">
         <strong>${job.score.toFixed(1)}</strong>
         <span>${formatStars(job.score)}</span>
@@ -112,8 +116,7 @@ function applyTheme(dark) {
 function initTheme() {
   let saved;
   try { saved = localStorage.getItem('rits-theme'); } catch { /* noop */ }
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved ? saved === 'dark' : prefersDark);
+  applyTheme(saved ? saved === 'dark' : false);
 }
 
 darkToggle.addEventListener('click', () => {
