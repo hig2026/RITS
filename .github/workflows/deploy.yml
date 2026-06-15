@@ -36,9 +36,9 @@ jobs:
       - name: Run tests
         run: npm test
 
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    name: Build & Deploy
+    name: Deploy to Pages
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
