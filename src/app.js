@@ -10,6 +10,77 @@ const jobsGrid = document.querySelector('#jobs-grid');
 const resultCount = document.querySelector('#result-count');
 const emptyState = document.querySelector('#empty-state');
 
+function safeUrl(url) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') return parsed.href;
+  } catch { /* invalid URL */ }
+  return '#';
+}
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function buildJobCard(job) {
+  const article = el('article', 'job-card');
+
+  const topline = el('div', 'job-card__topline');
+  topline.append(
+    el('span', 'pill', job.category),
+    el('span', 'confidence', `${Math.round(job.confidence * 100)}% confidence`)
+  );
+
+  const scoreDiv = el('div', 'score');
+  scoreDiv.setAttribute('aria-label', `Company credibility score ${job.score} out of 5`);
+  scoreDiv.append(
+    el('strong', null, job.score.toFixed(1)),
+    el('span', null, formatStars(job.score))
+  );
+
+  const details = document.createElement('details');
+  const summary = document.createElement('summary');
+  summary.textContent = 'Credibility notes';
+  const notesList = document.createElement('ul');
+  job.credibilityNotes.forEach((note) => notesList.append(el('li', null, note)));
+  details.append(summary, notesList);
+
+  const tagsDiv = el('div', 'tags');
+  job.tags.forEach((tag) => tagsDiv.append(el('span', null, tag)));
+
+  const metaRow = el('div', 'meta-row');
+  metaRow.append(el('span', null, job.workMode), el('span', null, job.pay));
+
+  const actions = el('div', 'job-actions');
+  const sourceLink = el('a', 'button primary', 'View JD source');
+  sourceLink.href = safeUrl(job.sourceUrl);
+  sourceLink.target = '_blank';
+  sourceLink.rel = 'noopener noreferrer';
+  const companyLink = el('a', 'button secondary', 'Company site');
+  companyLink.href = safeUrl(job.companyUrl);
+  companyLink.target = '_blank';
+  companyLink.rel = 'noopener noreferrer';
+  actions.append(sourceLink, companyLink);
+
+  article.append(
+    topline,
+    el('h3', null, job.title),
+    el('p', 'company', job.company),
+    metaRow,
+    el('p', null, job.eligibility),
+    scoreDiv,
+    details,
+    tagsDiv,
+    actions,
+    el('p', 'verified', `Verified ${job.verifiedOn}`)
+  );
+
+  return article;
+}
+
 function populateCategories() {
   const categories = [...new Set(eligibleJobs.map((job) => job.category))].sort();
 
@@ -33,46 +104,11 @@ function renderJobs() {
     return categoryMatch && modeMatch && scoreMatch;
   });
 
-  jobsGrid.innerHTML = '';
+  jobsGrid.replaceChildren();
   emptyState.hidden = filteredJobs.length > 0;
   resultCount.textContent = `${filteredJobs.length} verified ${filteredJobs.length === 1 ? 'role' : 'roles'}`;
 
-  filteredJobs.forEach((job) => {
-    const article = document.createElement('article');
-    article.className = 'job-card';
-    article.innerHTML = `
-      <div class="job-card__topline">
-        <span class="pill">${job.category}</span>
-        <span class="confidence">${Math.round(job.confidence * 100)}% confidence</span>
-      </div>
-      <h3>${job.title}</h3>
-      <p class="company">${job.company}</p>
-      <div class="meta-row">
-        <span>${job.workMode}</span>
-        <span>${job.pay}</span>
-      </div>
-      <p>${job.eligibility}</p>
-      <div class="score" aria-label="Company credibility score ${job.score} out of 5">
-        <strong>${job.score.toFixed(1)}</strong>
-        <span>${formatStars(job.score)}</span>
-      </div>
-      <details>
-        <summary>Credibility notes</summary>
-        <ul>
-          ${job.credibilityNotes.map((note) => `<li>${note}</li>`).join('')}
-        </ul>
-      </details>
-      <div class="tags">
-        ${job.tags.map((tag) => `<span>${tag}</span>`).join('')}
-      </div>
-      <div class="job-actions">
-        <a class="button primary" href="${job.sourceUrl}" target="_blank" rel="noopener noreferrer">View JD source</a>
-        <a class="button secondary" href="${job.companyUrl}" target="_blank" rel="noopener noreferrer">Company site</a>
-      </div>
-      <p class="verified">Verified ${job.verifiedOn}</p>
-    `;
-    jobsGrid.append(article);
-  });
+  filteredJobs.forEach((job) => jobsGrid.append(buildJobCard(job)));
 }
 
 populateCategories();
