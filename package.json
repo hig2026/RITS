@@ -14,6 +14,8 @@
     "static-site"
   ],
   "license": "MIT",
-  "devDependencies": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
 }
