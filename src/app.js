@@ -1,5 +1,6 @@
 import { jobs } from './data/jobs.js';
-import { formatStars, isEligibleForListing } from './services/scoring.js';
+import { formatStars, formatConfidence, isEligibleForListing } from './services/scoring.js';
+import { esc, renderListItems, renderTags, externalLink } from './helpers/dom.js';
 
 const eligibleJobs = jobs.filter(isEligibleForListing);
 
@@ -11,12 +12,6 @@ const jobsGrid = document.querySelector('#jobs-grid');
 const resultCount = document.querySelector('#result-count');
 const emptyState = document.querySelector('#empty-state');
 const darkToggle = document.querySelector('#dark-toggle');
-
-function esc(str) {
-  const el = document.createElement('span');
-  el.textContent = str;
-  return el.innerHTML;
-}
 
 function populateCategories() {
   const categories = [...new Set(eligibleJobs.map((job) => job.category))].sort();
@@ -60,7 +55,7 @@ function renderJobs() {
     article.innerHTML = `
       <div class="job-card__topline">
         <span class="pill">${esc(job.category)}</span>
-        <span class="confidence">${Math.round(job.confidence * 100)}% confidence${cautionHtml}</span>
+        <span class="confidence">${formatConfidence(job.confidence)} confidence${cautionHtml}</span>
       </div>
       <h3>${esc(job.title)}</h3>
       <p class="company">${esc(job.company)}</p>
@@ -77,15 +72,15 @@ function renderJobs() {
       <details>
         <summary>Credibility notes</summary>
         <ul>
-          ${job.credibilityNotes.map((note) => `<li>${esc(note)}</li>`).join('')}
+          ${renderListItems(job.credibilityNotes)}
         </ul>
       </details>
       <div class="tags">
-        ${job.tags.map((tag) => `<span>${esc(tag)}</span>`).join('')}
+        ${renderTags(job.tags)}
       </div>
       <div class="job-actions">
-        <a class="button primary" href="${esc(job.sourceUrl)}" target="_blank" rel="noopener noreferrer">View JD</a>
-        <a class="button secondary" href="${esc(job.companyUrl)}" target="_blank" rel="noopener noreferrer">Company site</a>
+        ${externalLink(job.sourceUrl, 'View JD', 'button primary')}
+        ${externalLink(job.companyUrl, 'Company site', 'button secondary')}
       </div>
       <p class="verified">Verified ${esc(job.verifiedOn)}</p>
     `;
