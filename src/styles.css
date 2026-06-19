@@ -1,6 +1,6 @@
 /* ===================================================================
    RITS — HTML 4.0-era clarity
-   Deep purple/indigo + black + white. Text-first, minimal chrome.
+   Teal + black + white. Text-first, minimal chrome.
    Modern power UX stays invisible until used.
    =================================================================== */
 
@@ -9,10 +9,10 @@
   --bg: #ffffff;
   --ink: #000000;
   --muted: #444444;
-  --accent: #4b0082;
-  --link: #4b0082;
-  --link-visited: #2d004f;
-  --link-hover: #6a0dad;
+  --accent: #0f5c5c;
+  --link: #0f5c5c;
+  --link-visited: #08413f;
+  --link-hover: #14757a;
   --border: #cccccc;
   --caution: #8b6914;
   --danger: #8b0000;
@@ -27,10 +27,10 @@
   --bg: #000000;
   --ink: #e0e0e0;
   --muted: #999999;
-  --accent: #9370db;
-  --link: #9370db;
-  --link-visited: #7b68ee;
-  --link-hover: #b19cd9;
+  --accent: #4dbab8;
+  --link: #4dbab8;
+  --link-visited: #3a9a98;
+  --link-hover: #6fd2cf;
   --border: #333333;
   --caution: #daa520;
   --danger: #cd5c5c;
@@ -324,6 +324,14 @@ kbd {
   font-size: 0.9em;
 }
 
+/* ---- COMMISSION SECTION ---- */
+.commission-section { margin: 1.5em 0; }
+
+.commission-card { border-left: 3px solid var(--accent); padding-left: 0.75em; }
+
+#commission-toggle { margin: 0.5em 0; }
+
+/* ---- EMPTY STATE ---- */
 .empty-state { text-align: center; padding: 2em 0; color: var(--muted); }
 
 /* ---- RESPONSIVE ---- */

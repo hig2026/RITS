@@ -15,6 +15,7 @@
       <nav aria-label="Main navigation">
         <a class="brand" href="#top">RITS Jobs</a>
         <div class="nav-links">
+          <a href="#commission">Marketplaces</a>
           <a href="#jobs">Jobs</a>
           <a href="#method">Method</a>
           <a href="#future">Future</a>
@@ -23,11 +24,14 @@
       </nav>
 
       <section id="top">
-        <p class="eyebrow">No signup · Free stack · India-friendly</p>
+        <p class="eyebrow">No signup · Free stack · India-friendly · Pay-gap vetted</p>
         <h1>Curated jobs for globally mobile Indian applicants</h1>
         <p class="lead">
           ESL tutoring, analytics/data science, insurance/reinsurance analytics,
-          AI training, and AI development roles that are work-from-anywhere or visa-sponsorship friendly.
+          and AI training roles that are work-from-anywhere, visa-sponsorship friendly,
+          or direct-employer India roles. Every listing links to the real job
+          description — never an aggregator search page. Any native/non-native
+          pay gap over 10% is flagged on the card.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#jobs">Browse jobs</a>
@@ -36,11 +40,11 @@
         <div class="audit-card">
           <strong>Listing bar</strong>
           <ul>
-            <li>Global accessibility filter: open to all nationalities</li>
-            <li>≥95% confidence India eligibility (2.5% margin of error)</li>
-            <li>Worldwide remote or sponsorship track record</li>
-            <li>Company credibility scored before listing</li>
-            <li>Link goes to the actual job description page</li>
+            <li>India eligibility verified — worldwide remote, visa sponsorship, or direct-employer India role</li>
+            <li>≥95% confidence India eligibility</li>
+            <li>Real job-description URL — never an aggregator search page</li>
+            <li>Native/non-native pay gap vetted — &gt;10% flagged, &gt;50% excluded</li>
+            <li>Company credibility scored from press, lawsuits, and worker reports — not impressions</li>
           </ul>
         </div>
       </section>
@@ -77,6 +81,16 @@
             </select>
           </label>
         </div>
+      </section>
+
+      <section id="commission" class="section commission-section" aria-labelledby="commission-title">
+        <div class="section-heading">
+          <h2 id="commission-title">Commission marketplaces</h2>
+          <p class="result-count">Set-your-own-rates platforms</p>
+        </div>
+        <p class="lead">These ESL marketplaces accept non-native speakers and let tutors set their own rates. They are listed separately because earnings depend on student demand — the fairness bar here is the presence of a documented native/non-native earnings gap, which is flagged on each card.</p>
+        <button id="commission-toggle" class="button secondary" type="button" aria-expanded="false">Show commission platforms</button>
+        <div id="commission-panel" class="jobs-grid" hidden></div>
       </section>
 
       <section id="jobs" class="section" aria-labelledby="jobs-title">

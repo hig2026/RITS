@@ -1,14 +1,13 @@
 # RITS job-vetting playbook
 
-RITS only lists jobs when the reviewer can defend a **90% or higher confidence** that an Indian national can apply from India or from another country without being rejected for nationality/location reasons.
+RITS only lists jobs when the reviewer can defend a **95% or higher confidence** that an Indian national can apply from India or from another country without being rejected for nationality/location reasons — and without facing documented pay discrimination.
 
 ## Inclusion rules
 
-1. **Worldwide remote:** The listing must say worldwide, anywhere, global, no location restriction, or provide a country list that includes India.
-2. **Visa sponsorship:** The employer must explicitly mention sponsorship, relocation support, work authorization support, or a history of sponsoring similar roles in the target country.
-3. **No unclear remote geography:** “Remote” alone is not enough when the employer also names the US, EU, UK, Canada, or a specific timezone as a hard location.
-4. **Role focus:** Current scope is ESL tutoring, analytics/data science, AI training, AI agents, and AI development.
-5. **Source link:** RITS links to the original job description or source page instead of copying long copyrighted descriptions.
+1. **Worldwide remote OR visa sponsorship OR direct-employer India role.** A worldwide-remote listing (worldwide, anywhere, global, no location restriction, or a country list including India) qualifies. A direct-employer India role (domestic India hiring at an India office) also qualifies as accessible to Indian nationals — provided the JD is verifiable on the company's own careers site. "Remote" alone is not enough when the employer also names the US, EU, UK, Canada, or a specific timezone as a hard location.
+2. **Real job-description URL — never an aggregator search-results page.** The source link must point to the actual JD on the company's own careers site (or, for marketplaces, the official "teach"/"apply" page). ZipRecruiter job-search URLs, WeWorkRemotely category pages, and TEFL.com / Dave's ESL Cafe board listing pages are NOT acceptable — the reviewer must click through to the real company JD before listing. JS-rendered careers pages (Aon, Verisk Oracle HCM) are acceptable when the URL resolves in a browser and is indexed by search engines.
+3. **No silent pay discrimination.** Any documented native-vs-non-native pay gap greater than 10% must be flagged via `payDisparityWarning` (fixed-rate platforms) or `payGapFlag` (commission marketplaces) and surfaced prominently on the card. Listings with a structural >50% gap are kept only with a prominent warning; listings whose gap is structural and unfixable (e.g. Outlier's ~78-85% gap, Cambly's native-only policy, DataAnnotation's India block, Polly English's India exclusion, Ringle's US/UK-university requirement) are excluded entirely and recorded in `excludedCompanies` with the reason and source URL.
+4. **Role focus:** Current scope is ESL tutoring, analytics/data science, AI training, AI agents, and AI development, plus insurance/reinsurance cat-modelling and analytics.
 
 ## Credibility scoring
 
@@ -25,11 +24,14 @@ Every company starts at 3.0 stars and can move up or down in 0.1 increments acro
 ## Reviewer workflow
 
 1. Read the full job description and record hard location, nationality, timezone, and work-authorization constraints.
-2. Check the company careers site and at least two reputable external signals for hiring practices and worker sentiment.
-3. Search for employee-related litigation, wage-payment disputes, contractor misclassification claims, and regulatory actions.
-4. Assign a confidence score. Exclude the listing if confidence is below 90%.
-5. Add a short credibility note that explains the inclusion decision and any applicant caution.
-6. Re-verify active listings at least weekly because remote and AI-training jobs close quickly.
+2. **Click through to the real JD.** If the source link is an aggregator (ZipRecruiter, WeWorkRemotely, TEFL.com board listing, ESLCafe board listing), do not list — click through to the actual company JD and link that instead.
+3. Check the company careers site and at least two reputable external signals for **hiring-practice character**, not impressions. Press investigations (e.g. Inc.com, Analytics India Magazine), lawsuit filings, and regulatory actions outweigh Glassdoor stars.
+4. Extract native-speaker and non-native-speaker pay rates with sources. Compute the gap. If gap > 10%, flag it. If gap > 50% and structural, exclude and record in `excludedCompanies`.
+5. Search for employee-related litigation, wage-payment disputes, contractor misclassification claims, and regulatory actions.
+6. Confirm the work mode: worldwide remote, visa sponsorship, or direct-employer India role. "Remote" with a US/EU/UK/Canada hard location does NOT qualify.
+7. Assign a confidence score. Exclude the listing if confidence is below 95%.
+8. Add a short credibility note that explains the inclusion decision, any applicant caution, and the pay-gap finding.
+9. Re-verify active listings at least weekly because remote and AI-training jobs close quickly.
 
 ## Free-tool operating model
 
