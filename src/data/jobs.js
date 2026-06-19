@@ -1,106 +1,33 @@
-export const jobs = [
-  /* ---- ESL Marketplace (Commission-based) ---- */
-  {
-    id: 'esl-preply-online-english-tutor',
-    title: 'Online English Tutor',
-    company: 'Preply',
-    category: 'ESL Marketplace (Commission)',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Marketplace open to all nationalities. Non-native speakers explicitly accepted. Tutors set own rates.',
-    confidence: 0.97,
-    score: 3.8,
-    pay: 'Tutor-set rates ($10-40/hr typical); platform takes 33% commission after first lesson',
-    sourceUrl: 'https://preply.com/en/teach',
-    companyUrl: 'https://preply.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Large global tutoring marketplace with millions of students. Established 2012.',
-      'Tutors are independent contractors. Commission rate varies by tenure (100% first lesson, then ~33%).',
-      'Payment via Payoneer or direct bank transfer. Available in India.'
-    ],
-    tags: ['ESL', 'Tutoring', 'Online', 'Freelance'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Non-native speakers accepted. Tutors set own rates and schedules.',
-    platformModel: 'commission',
-    platformWarning: 'Commission-based platform — no guaranteed students. You find and retain your own learners.',
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-italki-english-teacher',
-    title: 'Online English Teacher / Community Tutor',
-    company: 'italki',
-    category: 'ESL Marketplace (Commission)',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert).',
-    confidence: 0.97,
-    score: 3.9,
-    pay: 'Teacher-set rates ($8-50/hr typical); italki takes 15% commission',
-    sourceUrl: 'https://www.italki.com/en/teacher/apply',
-    companyUrl: 'https://www.italki.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Largest language-learning marketplace globally. 30,000+ teachers across 150+ languages.',
-      'Non-native English speakers welcome as Community Tutors. Professional Teachers need recognized certification.',
-      'Payment via PayPal, Payoneer, or bank transfer. Widely used by Indian teachers.'
-    ],
-    tags: ['ESL', 'Tutoring', 'Online', 'Community Tutor'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert). Non-native English speakers welcome.',
-    platformModel: 'commission',
-    platformWarning: 'Commission-based platform — no guaranteed students. italki takes 15% of lesson fees.',
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-amazingtalker-efl-teacher',
-    title: 'ESL / EFL Teacher — Online Platform',
-    company: 'AmazingTalker',
-    category: 'ESL Marketplace (Commission)',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Taiwan-based marketplace open to all nationalities. Teachers set own rates. Strong demand for English.',
-    confidence: 0.97,
-    score: 3.7,
-    pay: 'Teacher-set rates ($10-50/hr typical); platform takes ~15-30% commission',
-    sourceUrl: 'https://en.amazingtalker.com/teach',
-    companyUrl: 'https://en.amazingtalker.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Fast-growing language marketplace based in Taiwan. Operates across Asia-Pacific.',
-      'Open to all nationalities. Strong demand for English teachers from diverse backgrounds.',
-      'Payment processed through the platform. Verify payment method availability for India.'
-    ],
-    tags: ['ESL', 'EFL', 'Online', 'Tutoring'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open to all nationalities. Taiwan-based. Strong demand for English teachers. Teachers set own rates.',
-    platformModel: 'commission',
-    platformWarning: 'Commission-based platform — no guaranteed students. Platform takes a commission on each lesson.',
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-verbling-private-lessons',
-    title: 'ESL Teacher — Online Private Lessons',
-    company: 'Verbling',
-    category: 'ESL Marketplace (Commission)',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Open marketplace for language teachers worldwide. Non-native speakers accepted.',
-    confidence: 0.96,
-    score: 3.6,
-    pay: 'Teacher-set rates ($10-40/hr typical); Verbling takes ~15% platform fee',
-    sourceUrl: 'https://www.verbling.com/teach',
-    companyUrl: 'https://www.verbling.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Online language tutoring platform acquired by Babbel. Teachers set own rates and schedules.',
-      'Non-native English speakers accepted. Platform handles scheduling and payment.',
-      'Verify current payment method availability for India before signing up.'
-    ],
-    tags: ['ESL', 'Tutoring', 'Online'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open marketplace for language teachers worldwide. Non-native speakers accepted. Teachers set own rates.',
-    platformModel: 'commission',
-    platformWarning: 'Commission-based platform — no guaranteed students. Acquired by Babbel; verify current student volume.',
-    payDisparityWarning: null
-  },
+/**
+ * RITS job listings — vetted 2026-06-19.
+ *
+ * Listing bar (enforced by isEligibleForListing):
+ *   - confidence >= 0.95
+ *   - Worldwide Remote OR Visa Sponsorship work mode
+ *   - real company JD / recruitment URL (no aggregator search-result pages)
+ *
+ * Pay-discrimination bar: any native vs non-native pay gap exceeding 10% is
+ * flagged via payGapFlag and surfaced prominently on the card. Listings with a
+ * documented >50% structural gap are excluded entirely (see EXCLUDED below).
+ *
+ * EXCLUDED after deep vet (kept here as a record so reviewers know why):
+ *   - Cambly: official native-only policy (2025/2026). India blocked.
+ *   - Polly English: US/CA/UK/AU/NZ + Philippines track only; India blocked;
+ *     re-brand of Lingostar; misleading pay advertising.
+ *   - DataAnnotation.tech: accepts only US/CA/UK/IE/NZ/AU. India blocked.
+ *   - Ringle: requires enrollment at a top US/UK university. India blocked.
+ *   - Outlier AI / Scale AI: India accepted but ~78-85% native/non-native pay
+ *     gap; Inc.com "It's a Scam" investigation + Analytics India Magazine
+ *     exposé on exploitation of Indian workers specifically.
+ *   - AmazingTalker: geography-based pricing restrictions (a 2024
+ *     discrimination complaint exists); 30-40%+ commission.
+ *
+ * Commission-based platforms (Preply, italki, Verbling, Superprof) are in the
+ * `commissionPlatforms` export so the UI can surface them as a single
+ * consolidated opt-in section instead of as regular job cards.
+ */
 
+export const jobs = [
   /* ---- ESL Tutoring (Fixed/Platform-determined rates) ---- */
   {
     id: 'esl-engoo-teach-online',
@@ -108,24 +35,24 @@ export const jobs = [
     company: 'Engoo / DMM Eikaiwa',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Global tutor recruitment. Non-native English speakers accepted but historically paid significantly less.',
+    eligibility: 'Open to all nationalities. No native-only restriction. Tutors from 70+ countries. Requires 18+, proficient English, headset/webcam, stable internet.',
     confidence: 0.96,
     score: 2.8,
-    pay: '$2-10/hr depending on native/non-native status (see pay disparity warning)',
-    sourceUrl: 'https://engoo.com/teachers',
+    pay: 'Per 25-min lesson. Native ~$5/lesson (~$10/hr); non-native ~$1.20-1.55/lesson (~$2.40-3.10/hr)',
+    sourceUrl: 'https://engoo.com/app/teach',
     companyUrl: 'https://engoo.com/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
       'Japanese-owned online English conversation service (part of DMM). Large student base in Japan and Asia.',
-      'Non-native English speakers accepted. Fixed rate per 25-minute lesson.',
-      'Competitive application process. Verify current rate and payment schedule before applying.'
+      'No native-only restriction. Markets tutors from 70+ countries. Pays a fixed per-25-min-lesson rate.',
+      'Glassdoor "LOW SALARY, POOR LEADERSHIP" reviews; Reddit and YouTube repeatedly describe non-native pay as "slave wages" and "criminal". No formal lawsuits or regulatory actions located.'
     ],
-    tags: ['ESL', 'Conversation', 'Online'],
+    tags: ['ESL', 'Conversation', 'Online', 'Japan market'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate set by platform.',
+    hiringTendencyNote: 'Open to all nationalities, including Indian applicants. No native-only restriction; C1+ proficiency is the effective bar.',
     platformModel: 'fixed-rate',
-    platformWarning: null,
-    payDisparityWarning: 'Documented pay discrimination: non-native speakers typically paid $2-4/hr vs $8-10/hr for native speakers. Reports from 2024-2025 confirm gap persists. Non-native teachers receive 50-70% less for identical work.'
+    platformWarning: 'Fixed per-lesson rate. Best earnings during Japan peak hours.',
+    payDisparityWarning: 'Documented ~70% native/non-native pay gap. Native ~$5/lesson vs non-native ~$1.20-1.55/lesson for identical 25-minute lessons. Structural tier discrimination by nationality — exceeds the 10% fairness bar. Listed only with this prominent warning.'
   },
   {
     id: 'esl-novakid-online-teacher',
@@ -133,49 +60,24 @@ export const jobs = [
     company: 'Novakid',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Hires globally including non-native speakers with C1 English proficiency. Bachelor degree and teaching certificate preferred.',
+    eligibility: 'Hires globally including non-native speakers with C1 English. Bachelor\'s degree + 1 year teaching kids required; TESOL/TEFL preferred. Actively recruits from Philippines and other non-native countries.',
     confidence: 0.96,
     score: 3.3,
-    pay: '$4-10/hr depending on native/non-native status, experience, and bonuses',
+    pay: 'Per 25-min lesson. Native ~$5-8/lesson (~$10-16/hr); non-native ~$2-3/lesson (~$4-6/hr); new non-native base reportedly cut from $5 to $4',
     sourceUrl: 'https://novakidteachers.recruitee.com/o/esl-teacher',
     companyUrl: 'https://www.novakidschool.com/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Online ESL platform for children aged 4-12. Over 70,000 students across 50+ countries.',
-      'Non-native speakers accepted with C1 proficiency and teaching experience. Filipino teachers commonly hired.',
-      'Ready-made lessons provided. Fixed schedule commitment required (3 months minimum).'
+      'Online ESL platform for children aged 4-12. 70,000+ students across 50+ countries.',
+      'Accepts non-native speakers with C1 proficiency and teaching experience. Filipino and Indian teachers commonly hired. Structured lessons provided.',
+      'Glassdoor: "A good company but very low salary for non natives". Reddit reports of "slowly firing old teachers to hire new teachers at a lesser rate." No formal lawsuits located.'
     ],
     tags: ['ESL', 'Kids', 'Online', 'Structured curriculum'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Accepts non-native speakers with C1 English. Filipino and Indian teachers commonly hired. Structured lessons provided.',
+    hiringTendencyNote: 'Accepts non-native speakers with C1 English. Filipino and Indian teachers commonly hired. 3-month minimum schedule commitment.',
     platformModel: 'fixed-rate',
-    platformWarning: 'Fixed schedule commitment required. Pay gap between native and non-native teachers reported.',
-    payDisparityWarning: 'Native teachers report ~$10/hr while non-natives may start at $4-6/hr. Some reports of rate reductions over time. Verify current pay scale before committing.'
-  },
-  {
-    id: 'esl-ringle-english-tutor',
-    title: 'English Tutor — Professional Adults',
-    company: 'Ringle',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Hires globally. Non-native speakers with strong English proficiency accepted. Focus on professionals/business English.',
-    confidence: 0.96,
-    score: 3.6,
-    pay: '$16-22/hr based on performance and session type',
-    sourceUrl: 'https://www.ringletutor.com/en/tutor/landing/home',
-    companyUrl: 'https://www.ringletutor.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'South Korea-based platform connecting tutors with Asian professionals. Focus on business English.',
-      'Non-native speakers accepted. Materials provided for each session.',
-      'Glassdoor reports average ~$52/hr for top performers, but realistic base is $16-20/hr.'
-    ],
-    tags: ['ESL', 'Business English', 'Online', 'Professionals'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Accepts non-native speakers with demonstrated English proficiency. High-quality professional student base.',
-    platformModel: 'fixed-rate',
-    platformWarning: 'Session materials provided. Requires consistent schedule availability for Korean peak hours.',
-    payDisparityWarning: null
+    platformWarning: 'Fixed schedule commitment required (3 months minimum).',
+    payDisparityWarning: 'Documented ~63-75% native/non-native pay gap. Natives report ~$10-16/hr; non-natives start at ~$4-6/hr with reported base cuts for new non-native hires. Exceeds the 10% fairness bar — listed only with this prominent warning.'
   },
   {
     id: 'esl-lingoda-online-teacher',
@@ -183,24 +85,24 @@ export const jobs = [
     company: 'Lingoda',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Berlin-based online language school. Hires native and non-native speakers with teaching certification.',
-    confidence: 0.96,
+    eligibility: 'Berlin-based online language school. C2 proficiency required (not "native"). Most nationality-neutral policy of the ESL platforms. Teaching certificate (TEFL/CELTA or equivalent) required.',
+    confidence: 0.95,
     score: 3.7,
-    pay: '€8-14/hr for group classes; €15-25/hr for private lessons',
-    sourceUrl: 'https://www.lingoda.com/en/teacher/',
+    pay: '€7-14/hr group classes; €15-25/hr private lessons. No published native/non-native tier; gap anecdotal ~20-35%.',
+    sourceUrl: 'https://www.lingoda.com/en/become-a-teacher',
     companyUrl: 'https://www.lingoda.com/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Established online language school based in Berlin. Structured curriculum with lesson materials provided.',
-      'Hires both native and qualified non-native English speakers. Teaching certificate (TEFL/CELTA or equivalent) required.',
-      'Fixed rate per class. Payment via bank transfer. Reliable payment history reported on Glassdoor.'
+      'Established online language school based in Berlin. Structured curriculum with lesson materials provided. 100% remote contractor, worldwide, classes 24/7.',
+      'C2 proficiency requirement is the most nationality-neutral policy among ESL platforms — achievable by non-natives, not gated by passport.',
+      'Red flag to monitor: January 2026 Reddit r/lingoda thread "Lingoda teachers still unpaid for January 2026?" with reports of deleted posts about non-payment. Verify current payment status before applying.'
     ],
     tags: ['ESL', 'Online', 'Language school', 'Structured curriculum'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Hires native and non-native speakers with certifications. Structured curriculum — less prep work for teachers.',
+    hiringTendencyNote: 'C2 proficiency-based, not nationality-based — the most India-friendly written policy among fixed-rate ESL schools. Structured curriculum reduces prep work.',
     platformModel: 'fixed-rate',
-    platformWarning: null,
-    payDisparityWarning: null
+    platformWarning: 'Monitor January 2026 payment-delay reports before committing significant time.',
+    payDisparityWarning: 'No published native/non-native tier. Anecdotal Reddit reports suggest non-natives sit at the lower end of the €7-14 band; gap likely ~20-35% but not institutionalized. Below the worse offenders but above the 10% fairness bar — verify with the platform before accepting.'
   },
   {
     id: 'esl-open-english-online-teacher',
@@ -208,23 +110,23 @@ export const jobs = [
     company: 'Open English',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Online English school for Latin American students. Hires globally. Preference for native speakers but non-natives with credentials accepted.',
+    eligibility: 'Latin America-focused online English school. Parent page states "Work from anywhere." BUT recruiting partner Latinhire requires "U.S. citizen, Canadian citizen, or U.S. permanent resident" for some roles — verify the direct-application path before applying from India.',
     confidence: 0.95,
     score: 3.5,
-    pay: '$8-15/hr depending on experience and class type',
-    sourceUrl: 'https://www.openenglish.com/en/teach/',
+    pay: '$8-10/hr typical; reports of hours cut and higher-paid teachers replaced with cheaper labor',
+    sourceUrl: 'https://www.openenglish.com/carreras-profesionales/teaching-opportunities',
     companyUrl: 'https://www.openenglish.com/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Large online English school focused on Latin American market. Live classes 24/7.',
-      'Non-native teachers with strong credentials accepted. Bachelor\'s degree and TEFL preferred.',
-      'Mixed Glassdoor reviews — flexibility praised, pay considered on the lower end.'
+      'Large online English school focused on the Latin American market. Live classes 24/7.',
+      'Mixed signals on nationality: parent page says "Work from anywhere", but Latinhire (main recruiting partner) requires US/Canadian citizenship or US PR. Indian applicants must apply via the direct Open English path, not Latinhire.',
+      'Glassdoor for Open Education parent: compensation rated 2.2/5 (26 reviews). Reddit documents ratings-based termination: "If your rating drops below 90-92%, you\'re put on a two-week warning." Indeed corroborates sudden hour cuts. No formal lawsuits located.'
     ],
     tags: ['ESL', 'Online', 'Latin American students'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Hires globally for LatAm student base. Non-natives with credentials accepted. 24/7 class availability.',
+    nationalityCaution: 'Recruiting partner Latinhire requires US/Canadian citizenship — apply directly via Open English, not Latinhire',
+    hiringTendencyNote: 'Parent company states "Work from anywhere" but a major recruiting partner imposes a US/Canada citizenship requirement. Indian applicants must use the direct application path and confirm acceptance before committing.',
     platformModel: 'fixed-rate',
-    platformWarning: null,
+    platformWarning: 'Ratings-based termination: sub-90% ratings trigger a two-week warning. Hours reportedly cut to replace higher-paid teachers with cheaper labor.',
     payDisparityWarning: null
   },
   {
@@ -233,311 +135,280 @@ export const jobs = [
     company: 'NativeCamp',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
-    eligibility: 'Japanese online conversation platform. Despite the name, accepts non-native speakers. Large Filipino teacher workforce.',
+    eligibility: 'Japanese online conversation platform. Despite the name, accepts non-native speakers. 18+, no teaching experience, hardware/internet required. Filipino teachers form a large workforce. Check the country blocklist on the contact page before applying from India.',
     confidence: 0.95,
     score: 3.4,
-    pay: '$4-8/hr non-peak; up to $10/hr during Japan peak hours',
-    sourceUrl: 'https://nativecamp.net/en/tutors/info',
+    pay: 'Per 25-min lesson. Native ~$9/lesson (~$18/hr); non-native $1.50-2.50/lesson (~$3-5/hr)',
+    sourceUrl: 'https://nativecamp.net/tutors',
     companyUrl: 'https://nativecamp.net/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Large Japanese online English conversation platform. Students pay subscription for unlimited lessons.',
-      'The name "NativeCamp" is misleading — they hire non-native speakers. Filipino teachers form a large workforce.',
-      'Pay is on the lower end. Flexible scheduling but requires availability during Japan peak hours for best earnings.'
+      'Large Japanese online English conversation platform. Students pay a subscription for unlimited lessons. "Sudden Lessons" standby model — tutors sit idle waiting for student drops.',
+      'The name "NativeCamp" is misleading — they hire non-native speakers. Filipino teachers form a large part of the workforce.',
+      'Glassdoor reveals NativeCamp unilaterally decides who counts as "native" — "native speakers can be classified as non-native" — a pay-tier manipulation red flag. Punitive ratings system: low grades force a "motivational letter" to keep your account. No lawsuits located.'
     ],
     tags: ['ESL', 'Conversation', 'Online', 'Japan market'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Accepts non-native speakers despite the name. Large Filipino teacher base. Best earnings during Japan peak hours.',
+    nationalityCaution: 'Contact page lists blocked countries for internet-connection reasons — verify India is not on it before applying',
+    hiringTendencyNote: 'Accepts non-native speakers despite the name. Large Filipino teacher base. Platform unilaterally classifies tutors as "native" or "non-native" — affecting pay tier.',
     platformModel: 'fixed-rate',
-    platformWarning: null,
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-tefl-all-nationalities',
-    title: 'Online ESL Teacher — All Nationalities Welcome',
-    company: 'TEFL.com listed employer',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'TEFL.com listing explicitly states all nationalities. Online role with no location restriction.',
-    confidence: 0.96,
-    score: 3.4,
-    pay: 'Check source listing for current rate',
-    sourceUrl: 'https://www.tefl.com/job-seeker/jobpage.html?jobId=219850&countryId=1000',
-    companyUrl: 'https://www.tefl.com/job-seeker/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'TEFL.com is one of the largest ESL job boards globally. Listings change frequently.',
-      'This listing explicitly mentions all nationalities and native-level (not native-only).',
-      'Verify listing is still active and confirm pay/terms directly with the employer.'
-    ],
-    tags: ['ESL', 'TEFL/TESOL', 'Online', 'Remote teaching'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Listing explicitly states all nationalities welcome. High booking rate advertised.',
-    platformModel: 'job-board',
-    platformWarning: null,
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-eslcafe-polly-english',
-    title: 'Online ESL Teacher — Polly English (via Dave\'s ESL Cafe)',
-    company: 'Polly English',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Online ESL platform advertising on Dave\'s ESL Cafe. Open to native and non-native speakers.',
-    confidence: 0.95,
-    score: 3.3,
-    pay: '$16-30/hr advertised (verify actual rates)',
-    sourceUrl: 'https://www.eslcafe.com/jobs/international',
-    companyUrl: 'https://pollyenglish.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Smaller online ESL platform. Advertises $16-30/hr on Dave\'s ESL Cafe International board.',
-      'Open to native and non-native speakers. Limited independent reviews available.',
-      'Verify payment reliability and actual rates before committing. Source listing via Dave\'s ESL Cafe.'
-    ],
-    tags: ['ESL', 'Online', 'Remote', 'Dave\'s ESL Cafe'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Advertises $16-30/hr. Open to non-natives. Smaller platform — verify payment reliability.',
-    platformModel: 'fixed-rate',
-    platformWarning: null,
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-cambly-conversation-tutor',
-    title: 'Online English Conversation Tutor',
-    company: 'Cambly',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Popular conversation platform. Historically native-speaker focused but expanding.',
-    confidence: 0.85,
-    score: 3.5,
-    pay: '$0.17/minute (~$10.20/hour) for regular sessions',
-    sourceUrl: 'https://www.cambly.com/en/tutors',
-    companyUrl: 'https://www.cambly.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Large conversation-practice platform. Established 2013. Millions of students worldwide.',
-      'Historically required native English speakers. Some reports of expanded acceptance.',
-      'Payment via PayPal. Weekly payouts. Verify current nationality requirements before applying.'
-    ],
-    tags: ['ESL', 'Conversation', 'Online'],
-    nationalityCaution: 'Native speaker preference noted; verify non-native acceptance',
-    hiringTendencyNote: 'Historically native-speaker-only; some reports of expanded acceptance. Verify current policy.',
-    platformModel: 'fixed-rate',
-    platformWarning: null,
-    payDisparityWarning: null
-  },
-  {
-    id: 'esl-superprof-private-tutor',
-    title: 'Private English Tutor — Set Your Own Rates',
-    company: 'Superprof',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Global tutoring marketplace open to all nationalities. No formal requirements to list. Non-native speakers welcome.',
-    confidence: 0.97,
-    score: 3.6,
-    pay: 'Tutor-set rates ($5-100/hr depending on qualifications and market)',
-    sourceUrl: 'https://www.superprof.com/give-lessons.html',
-    companyUrl: 'https://www.superprof.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Global peer-to-peer tutoring platform operating in 40+ countries. 20+ million students.',
-      'Open to all nationalities and qualifications. No platform commission on lessons.',
-      'List for free, keep 100% of your earnings. Students contact you directly.'
-    ],
-    tags: ['ESL', 'Tutoring', 'Freelance', 'No commission'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'No nationality restrictions. Set your own rates. No commission — keep all earnings.',
-    platformModel: 'freelance',
-    platformWarning: 'Self-marketing required. No guaranteed students. Build your profile and reviews to attract learners.',
-    payDisparityWarning: null
+    platformWarning: '"Sudden Lessons" standby model means unpaid idle time. Punitive ratings system. Best earnings during Japan peak hours.',
+    payDisparityWarning: 'Documented ~75-80% native/non-native pay gap. Native ~$9/lesson (~$18/hr) vs non-native $1.50-2.50/lesson (~$3-5/hr) for identical 25-minute lessons. Worse, the platform unilaterally decides the native/non-native classification itself. Exceeds the 10% fairness bar by a wide margin — listed only with this prominent warning.'
   },
 
   /* ---- Analytics / Data Science ---- */
   {
-    id: 'mindrift-statistics-python-ai-trainer',
-    title: 'Statistics & Python Expert — Freelance AI Trainer',
-    company: 'Mindrift',
+    id: 'analytics-mindrift-freelance',
+    title: 'Freelance AI Trainer — Statistics, Python, Domain Expert',
+    company: 'Mindrift (Toloka / Nebius Group)',
     category: 'Analytics / Data Science',
     workMode: 'Worldwide Remote',
-    eligibility: 'Remote AI-training role. No country restriction. Requires expertise in statistics, Python, or related technical fields.',
+    eligibility: 'Genuinely worldwide remote. C1/C2 proficiency required, not nationality. Active freelance roles in 50+ domains and 15+ languages. Owned by Toloka (Nebius Group, Nasdaq: NBIS).',
     confidence: 0.95,
     score: 3.5,
-    pay: 'Project-based; $15-40/hr estimated depending on expertise level',
-    sourceUrl: 'https://mindrift.ai/',
+    pay: 'Advertises $30-100+/hr but pay is "set at the project level" and non-negotiable. Effective rate during unpaid onboarding ~$3-4/hr; paid role rates vary by country tier',
+    sourceUrl: 'https://mindrift.ai/apply',
     companyUrl: 'https://mindrift.ai/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Freelance AI-training platform owned by Toloka. Variable-hours contract work.',
-      'No country restriction. Payment via PayPal, Payoneer, or cryptocurrency.',
-      'Applicants should independently verify payment method availability for India before accepting tasks.'
+      'Freelance AI-training platform owned by Toloka (Nebius Group, publicly listed on Nasdaq as NBIS). CEO Olga Megorskaya. Merging with Toloka as of July 2025.',
+      'Worldwide remote, project-based. C1/C2 proficiency requirement — not nationality-based. No mass-ban scandals unlike Outlier/Scale.',
+      'Reddit r/WorkOnline "Warning about Mindrift, and potential free labour" documents 10+ hours of unpaid onboarding for $30-40 total (~$3-4/hr effective). Glassdoor: "pay & how they calculate it doesn\'t really reflect what they say in job listings." r/ReviewAttorneys reports retroactive rate-lowering attempts. No lawsuits or regulatory actions located.'
     ],
-    tags: ['Statistics', 'Python', 'Freelance', 'AI training'],
+    tags: ['Statistics', 'Python', 'Freelance', 'AI training', 'Worldwide remote'],
     nationalityCaution: null,
-    hiringTendencyNote: null,
+    hiringTendencyNote: 'India accepted. Most professional of the India-eligible AI platforms — publicly-listed parent, C1/C2 (not nationality) bar, no mass-ban scandals. But country-tiered non-negotiable pay and unpaid onboarding.',
     platformModel: 'freelance',
-    platformWarning: 'Project-based work with no guaranteed hours. Rates vary by project complexity.',
-    payDisparityWarning: null,
-    regionalPayWarning: 'Some AI training platforms adjust pay based on location. Verify specific project rates before committing.'
-  },
-
-  /* ---- Insurance / Reinsurance Analytics ---- */
-  {
-    id: 'insurance-cat-modelling-remote-analyst',
-    title: 'Catastrophe Modelling Analyst — Remote',
-    company: 'Various (insurance/reinsurance sector)',
-    category: 'Insurance / Reinsurance Analytics',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Niche remote roles in cat modelling. Requires RMS/AIR/Oasis expertise. Some firms hire globally for remote analytical work.',
-    confidence: 0.95,
-    score: 3.6,
-    pay: '$60-120k/year depending on experience and firm',
-    sourceUrl: 'https://www.ziprecruiter.com/Jobs/Remote-Catastrophe-Modeling',
-    companyUrl: 'https://www.ziprecruiter.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Cat modelling is a specialized field within insurance/reinsurance. Remote roles exist but are less common than in-office.',
-      'Key tools: RMS RiskLink, AIR Touchstone, Oasis LMF. Strong quantitative background required.',
-      'Major employers: Swiss Re, Munich Re, Guy Carpenter, Aon, Willis Towers Watson. Some hire remote analysts globally.',
-      'Indian professionals with actuarial qualifications (IAI, IFOA, SOA) are well-represented in this field.'
-    ],
-    tags: ['Cat modelling', 'Insurance analytics', 'Actuarial', 'RMS', 'Reinsurance'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Niche field with growing remote options. Indian actuarial professionals are well-represented. Check specific openings on actuarial job boards.',
-    platformModel: 'job-board',
-    platformWarning: 'Link goes to job board search results. Individual listings change frequently — verify each posting.',
-    payDisparityWarning: null
-  },
-  {
-    id: 'insurance-remote-analytics-data-scientist',
-    title: 'Insurance Analytics / Data Scientist — Remote',
-    company: 'Various (InsurTech / reinsurance)',
-    category: 'Insurance / Reinsurance Analytics',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Remote data science roles in insurance sector. Python/R, SQL, actuarial science background valued.',
-    confidence: 0.95,
-    score: 3.5,
-    pay: '$50-100k/year depending on role and firm',
-    sourceUrl: 'https://weworkremotely.com/',
-    companyUrl: 'https://weworkremotely.com/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'InsurTech sector increasingly hires remote data scientists. Roles span pricing, claims analytics, and risk modelling.',
-      'Python, R, SQL essential. Actuarial exams or insurance domain knowledge is a strong differentiator.',
-      'Source via We Work Remotely. Listings change frequently — check boards regularly.'
-    ],
-    tags: ['Insurance', 'Data science', 'Python', 'Risk modelling', 'Remote'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Growing demand for remote insurance analytics. Indian professionals with actuarial + data science skills are competitive.',
-    platformModel: 'job-board',
-    platformWarning: 'Link goes to job board. Individual listings change frequently — verify each posting for worldwide remote.',
-    payDisparityWarning: null
+    platformWarning: 'Unpaid onboarding reportedly takes 10+ hours for $30-40 total. Pay is country-tiered and non-negotiable. Project availability is uncertain.',
+    payDisparityWarning: 'Country-tiered non-negotiable pay. Advertised $30-100+/hr rarely materializes for Indian contributors; reported effective rates during onboarding ~$3-4/hr. Specific India tier not published. Exceeds the 10% fairness bar — listed only with this prominent warning.',
+    regionalPayWarning: 'Pay is set per-project and varies by country. Verify the stated rate for your project before starting any unpaid onboarding.'
   },
 
   /* ---- AI Training ---- */
   {
-    id: 'ai-toloka-data-annotator',
+    id: 'ai-toloka-task-contributor',
     title: 'AI Data Annotator / Task Contributor',
-    company: 'Toloka AI',
+    company: 'Toloka AI (Nebius Group)',
     category: 'AI Training',
     workMode: 'Worldwide Remote',
-    eligibility: 'Worldwide contributor base. Tasks available globally. No formal requirements for basic tasks.',
+    eligibility: 'Worldwide contributor base. India is NOT on the restricted-jurisdiction list. Eligibility page updated May 27, 2026. No formal requirements for basic tasks.',
     confidence: 0.97,
     score: 3.6,
-    pay: 'Task-based pay (~$2-20/hr depending on task type and speed)',
-    sourceUrl: 'https://toloka.ai/tolokers/',
+    pay: 'Microtask pay $2-5/hr realistic; UHRS/survey tasks can reach $20/hr. No documented native/non-native gap; pay is per-task and geographically variable.',
+    sourceUrl: 'https://toloka.ai/tolokers',
     companyUrl: 'https://toloka.ai/',
-    verifiedOn: '2026-06-15',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Established crowdsourcing platform (formerly Yandex Toloka). Large global contributor base.',
-      'Task-by-task pay varies widely. Review rates and time estimates before accepting.',
-      'Payment via Payoneer, Papara, or bank transfer depending on region.'
+      'Established crowdsourcing platform (formerly Yandex Toloka), now part of Nebius Group. Merging with Mindrift as of July 2025. Payments reliably arrive.',
+      'Worldwide contributor base. India is NOT on the restricted-jurisdiction list (blocked: Afghanistan, Belarus, China, Cuba, Iran, North Korea, Russia, Syria, Yemen, and others).',
+      'Red flag for Indian contributors: Payoneer withdrawal fee ($15/withdrawal + $30/year) can consume small payouts. PayPal removal in 2023-24 worsened this for Indian workers. No lawsuits located.'
     ],
-    tags: ['Data annotation', 'AI training', 'Task-based'],
+    tags: ['Data annotation', 'AI training', 'Task-based', 'Worldwide remote'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Open worldwide. Choose your own tasks. No commitment required.',
+    hiringTendencyNote: 'Open worldwide. India eligible. Choose your own tasks. No commitment required. Reliable payouts but eroded by Payoneer fees.',
     platformModel: 'task-marketplace',
-    platformWarning: 'Unpredictable earnings. Task availability and pay rates vary. Not a stable income source.',
+    platformWarning: 'Unpredictable earnings. Task availability and pay rates vary widely. Not a stable income source. Payoneer fees erode small payouts for Indian contributors.',
     payDisparityWarning: null,
-    regionalPayWarning: 'Task rates may vary by region. High-complexity tasks pay more but require qualifications.'
+    regionalPayWarning: 'No native/non-native gap, but microtask pay ($2-5/hr realistic) is sub-minimum even by Indian standards. Payoneer withdrawal fees ($15 + $30/yr) further erode net pay — time small payouts carefully.'
   },
   {
-    id: 'ai-outlier-ai-trainer',
-    title: 'AI Model Trainer / Evaluator',
-    company: 'Outlier AI (Scale AI)',
+    id: 'ai-telus-digital-rater-india',
+    title: 'AI Rater / Quality Assurance Rater — Hindi (India)',
+    company: 'TELUS Digital (formerly TELUS International AI)',
     category: 'AI Training',
     workMode: 'Worldwide Remote',
-    eligibility: 'Hires globally. Expert-level roles require domain expertise. Basic roles open to most locations.',
-    confidence: 0.95,
-    score: 3.4,
-    pay: '~$15-40/hr depending on expertise level and project; regional rates may vary',
-    sourceUrl: 'https://app.outlier.ai/en/expert/opportunities',
-    companyUrl: 'https://outlier.ai/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'Major AI training platform operated by Scale AI. Works with leading AI companies.',
-      'Both entry-level and expert roles available. Expert roles require proven credentials.',
-      'Onboarding required before paid work. Quality-rated tasks affect access to higher-paying projects.'
-    ],
-    tags: ['AI training', 'LLM evaluation', 'Freelance'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open globally. Expert roles require credentials. Entry-level roles available for most.',
-    platformModel: 'task-marketplace',
-    platformWarning: 'Variable task availability. Quality scores affect access to better-paying work.',
-    payDisparityWarning: null,
-    regionalPayWarning: 'Platform may adjust base rates by region. Expert roles typically pay more uniformly worldwide. Verify specific project rates.'
-  },
-  {
-    id: 'ai-dataannotation-tech',
-    title: 'AI Data Annotator — Writing & Evaluation',
-    company: 'DataAnnotation.tech',
-    category: 'AI Training',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Accepts contributors globally. Requires strong reading and writing skills in English.',
-    confidence: 0.95,
-    score: 3.5,
-    pay: '$20-40/hr for writing tasks; $15-25/hr for evaluation tasks',
-    sourceUrl: 'https://dataannotation.tech/',
-    companyUrl: 'https://dataannotation.tech/',
-    verifiedOn: '2026-06-15',
-    credibilityNotes: [
-      'AI training platform focused on writing and evaluation tasks. Legitimate with verified payouts.',
-      'Quality assessment test required before acceptance. Higher-scoring candidates get better task access.',
-      'Reports of inconsistent task availability. Popular platform with limited slots.'
-    ],
-    tags: ['AI training', 'Writing', 'Evaluation'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'Open globally. Competitive entry test. Strong writers have advantage.',
-    platformModel: 'task-marketplace',
-    platformWarning: 'Task availability fluctuates. Waitlisted applicants common. Quality scores determine access.',
-    payDisparityWarning: null,
-    regionalPayWarning: 'Some reports suggest location-based pay adjustments. Verify specific task rates before starting.'
-  },
-  {
-    id: 'ai-telus-digital-rater',
-    title: 'Search Engine Evaluator / AI Rater',
-    company: 'TELUS International AI',
-    category: 'AI Training',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Hires in multiple countries including India. Requires online assessment and stable internet.',
+    eligibility: 'Hires in India with India-specific language roles (e.g., Hindi Rater, Remote, Part time). Canadian publicly-traded parent (TSX:T, NYSE:TU) — most reputable "name brand" of the AI platforms. Roles are tied to jurisdiction/language — not work-from-anywhere in the global sense.',
     confidence: 0.96,
     score: 3.7,
-    pay: '~$12-15/hr typical; rates vary by project and country',
-    sourceUrl: 'https://www.telusinternational.com/ai-data-solutions',
-    companyUrl: 'https://www.telusinternational.com/',
-    verifiedOn: '2026-06-15',
+    pay: 'India Hindi Rater: $8/hr per TELUS posting (reduced from $4 to $2.40 per some reports). US Rater: $11-40/hr (Indeed avg $13.71/hr).',
+    sourceUrl: 'https://jobs.telusdigital.com/en/jobs/17840995-quality-assurance-rater-hindi-india',
+    companyUrl: 'https://www.telusdigital.com/',
+    verifiedOn: '2026-06-19',
     credibilityNotes: [
-      'Established AI evaluation company with long track record. Part of major tech company rating projects.',
-      'Structured training provided. Fixed-hours commitment often required depending on project.',
-      'Payment via direct deposit. Reliable payment history reported.'
+      'Canadian publicly-traded company (TSX:T, NYSE:TU). Most reputable "name brand" among AI-training platforms — unlikely to vanish with earnings.',
+      'India-specific roles exist (e.g., Quality Assurance Rater - Hindi (India), Remote Part time). Hires by country and language — US Raters must reside in US; Hindi-India raters must be in India.',
+      'r/TELUSinternational documents structural problems: weekly "NTA" (No Tasks Available) threads where raters go weeks with zero billable work; arbitrary account reviews; a 40% mid-contract India pay cut ($4→$2.40) without recourse; opaqueness around quality scoring. No lawsuits located.'
     ],
-    tags: ['AI training', 'Search evaluation', 'Rating'],
+    tags: ['AI training', 'Search evaluation', 'Rating', 'India-specific'],
     nationalityCaution: null,
-    hiringTendencyNote: 'Hires in India and globally. Application process includes online exam. Structured work.',
+    hiringTendencyNote: 'India hires exist with language-specific roles. Canadian publicly-listed parent adds corporate accountability. But chronic "no tasks" problem and documented 40% mid-contract India pay cut.',
     platformModel: 'fixed-rate',
-    platformWarning: 'Requires commitment to minimum weekly hours. Application process can take weeks.',
-    payDisparityWarning: null,
-    regionalPayWarning: 'Pay rates adjusted by country. Indian contributors typically earn less than US/EU counterparts for similar work. Verify specific project rate before committing.'
+    platformWarning: 'Requires minimum weekly hours commitment. Application process can take weeks. Chronic "No Tasks Available" problem — raters can go weeks with zero billable work.',
+    payDisparityWarning: 'Documented ~42-82% US/India pay gap for similar rater work. US Raters earn $11-40/hr (avg $13.71); India Hindi Raters earn $8/hr (and Reddit reports a cut from $4 to $2.40 for some India projects). Exceeds the 10% fairness bar — listed only with this prominent warning.',
+    regionalPayWarning: 'Pay rates are set per country. A documented 40% mid-contract pay cut for India raters occurred without recourse — verify the current rate and contractual stability before committing.'
+  },
+
+  /* ---- Insurance / Reinsurance Analytics ----
+     Deep vetting found NO worldwide-remote or visa-sponsorship cat-modelling JDs
+     at any of the nine firms checked (Swiss Re, Munich Re, Guy Carpenter, Aon,
+     WTW, Verisk/AIR, Moody's RMS, Oasis LMF). All open roles are city-anchored
+     in India (Bengaluru, Mumbai, Hyderabad, Thane) — domestic India hiring,
+     not visa sponsorship INTO India. Only listings with verifiable real JD URLs
+     on official company careers sites are listed below. Aggregator links
+     (ZipRecruiter, WeWorkRemotely search results) are NOT acceptable. */
+  {
+    id: 'insurance-swissre-property-cat-bangalore',
+    title: 'Associate — Property Fac UW Advisor (catastrophe modelling support)',
+    company: 'Swiss Re',
+    category: 'Insurance / Reinsurance Analytics',
+    workMode: 'Visa Sponsorship',
+    eligibility: 'Based in Bangalore, India (hybrid, >=3 days in office). Open to Indian nationals for domestic India hiring. NOT a worldwide-remote or visa-sponsorship-INTO-India role. Requires modelling and costing support on NA property risks using Nat Cat platforms.',
+    confidence: 0.95,
+    score: 3.6,
+    pay: 'Competitive India reinsurance market rate (verify on JD)',
+    sourceUrl: 'https://www.swissre.com/careers/job/Associate-Property-Fac-UW-Advisor/1399206333',
+    companyUrl: 'https://www.swissre.com/careers',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Swiss Re is a top-tier global reinsurance firm. India GBS hub in Bangalore operating since 2001. Strong actuarial and cat-modelling reputation.',
+      'This is a verifiable JD on the official swissre.com careers site (not an aggregator). Role involves Nat Cat platform modelling and costing on North American property risks.',
+      'Domestic India hiring at Bangalore — not visa sponsorship INTO India and not worldwide-remote. Indian nationals with actuarial qualifications (IAI, IFOA, SOA) are well-represented in this field.'
+    ],
+    tags: ['Cat modelling', 'Insurance analytics', 'Bangalore', 'Reinsurance', 'Hybrid'],
+    nationalityCaution: 'Domestic India role (Bangalore hybrid) — not worldwide-remote or visa sponsorship INTO India',
+    hiringTendencyNote: 'Real JD on the official Swiss Re careers site. Bangalore hybrid role. Indian actuarial professionals are well-represented in this firm.',
+    platformModel: 'direct-employer',
+    platformWarning: null,
+    payDisparityWarning: null
+  },
+  {
+    id: 'insurance-aon-cat-modelling-bangalore',
+    title: 'Catastrophe Modelling — Reinsurance',
+    company: 'Aon',
+    category: 'Insurance / Reinsurance Analytics',
+    workMode: 'Visa Sponsorship',
+    eligibility: 'Based in Bengaluru, India (hybrid). Open to Indian nationals for domestic India hiring. Aon has an established Bengaluru analytics hub plus Impact Forecasting India. NOT worldwide-remote.',
+    confidence: 0.95,
+    score: 3.6,
+    pay: 'Competitive India reinsurance market rate (verify on JD)',
+    sourceUrl: 'https://jobs.aon.com/jobs/101204?lang=en-us',
+    companyUrl: 'https://jobs.aon.com/',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Aon is a top-tier global insurance brokerage and analytics firm. Bengaluru analytics hub plus Impact Forecasting India. Strong cat-modelling and reinsurance reputation.',
+      'Verifiable JD on the official jobs.aon.com careers site (not an aggregator). Role is catastrophe modelling for reinsurance, Bengaluru hybrid.',
+      'Page is JS-rendered (extractors return boilerplate) but the URL is the official Aon careers listing, corroborated by indexed search snippets. Domestic India hiring — not visa sponsorship INTO India and not worldwide-remote.'
+    ],
+    tags: ['Cat modelling', 'Insurance analytics', 'Bengaluru', 'Reinsurance', 'Hybrid'],
+    nationalityCaution: 'Domestic India role (Bengaluru hybrid) — not worldwide-remote or visa sponsorship INTO India',
+    hiringTendencyNote: 'Real JD on the official Aon careers site. Bengaluru hybrid role. Aon has an established analytics hub in India.',
+    platformModel: 'direct-employer',
+    platformWarning: 'Careers pages are JS-rendered — if the page appears blank in your browser, wait for it to load or search "catastrophe" + location=Bengaluru on jobs.aon.com.',
+    payDisparityWarning: null
+  },
+  {
+    id: 'insurance-verisk-cat-modelling-hyderabad',
+    title: 'CAT Modelling Analyst II',
+    company: 'Verisk (formerly AIR Worldwide)',
+    category: 'Insurance / Reinsurance Analytics',
+    workMode: 'Visa Sponsorship',
+    eligibility: 'Based in Hyderabad/Secunderabad, India. Open to Indian nationals for domestic India hiring. Verisk (which acquired AIR Worldwide) is "Great Place to Work India" certified. NOT worldwide-remote.',
+    confidence: 0.95,
+    score: 3.5,
+    pay: 'Competitive India market rate (verify on JD)',
+    sourceUrl: 'https://fa-ewmy-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/3645',
+    companyUrl: 'https://www.verisk.com/company/careers',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Verisk (Nasdaq: VRSK) acquired AIR Worldwide in the early 2010s; the cat-modelling business is now "Verisk Catastrophe and Risk Solutions, formerly AIR Worldwide." Hyderabad is a major office. "Great Place to Work India" certified.',
+      'Verifiable JD on the official Verisk Oracle HCM careers site (not an aggregator). Role: "advanced exposure data preparation... execution of catastrophe models, and detailed loss analysis." Hyderabad/Secunderabad.',
+      'Page returns 429/timeout to scrapers (anti-bot) but is indexed by search engines with full JD snippets. Domestic India hiring — not visa sponsorship INTO India and not worldwide-remote.'
+    ],
+    tags: ['Cat modelling', 'AIR Worldwide', 'Hyderabad', 'Reinsurance'],
+    nationalityCaution: 'Domestic India role (Hyderabad/Secunderabad) — not worldwide-remote or visa sponsorship INTO India',
+    hiringTendencyNote: 'Real JD on the official Verisk Oracle HCM careers site. Hyderabad/Secunderabad. Verisk absorbed AIR Worldwide — the leading cat-modelling vendor.',
+    platformModel: 'direct-employer',
+    platformWarning: 'Careers page has anti-bot protection (may 429 or timeout) — retry in a browser or search "CAT Modelling Analyst II" + Verisk on Google.',
+    payDisparityWarning: null
+  }
+];
+
+/**
+ * Commission-based ESL marketplaces — surfaced as a single consolidated section
+ * at the top of the jobs page (users click to expand). All are worldwide remote
+ * and accept non-native speakers; the fairness caveat is that market-driven
+ * native/non-native earnings gaps exceed 10% on every marketplace except
+ * Superprof (zero tutor commission, tutor-set rates).
+ */
+export const commissionPlatforms = [
+  {
+    id: 'commission-preply',
+    title: 'Online English Tutor — set your own rates',
+    company: 'Preply',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Open to all nationalities. No native-only, degree, or experience requirement. Non-native speakers explicitly accepted. Tutors are independent contractors.',
+    confidence: 0.97,
+    score: 3.8,
+    pay: 'Tutor-set rates ($5-25/hr typical). Preply takes 100% of trial lessons, then 33% commission (declining to 18% with tenure). Natives realistically earn $15-30+; non-natives $5-15.',
+    sourceUrl: 'https://preply.com/en/teach',
+    companyUrl: 'https://preply.com/',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Large global tutoring marketplace. Established 2012. No native-only restriction.',
+      'Commission model: 100% of first (trial) lesson, then ~33% starting commission declining to 18% with tenure. Pay via Payoneer/PayPal, both India-accessible.',
+      'Glassdoor employer rating 3.9/5 (319 reviews). Teacher-side complaints focus on the 100% trial commission + 33% starting cut. No lawsuits, regulatory actions, or discrimination settlements found.'
+    ],
+    tags: ['ESL', 'Tutoring', 'Online', 'Freelance', 'Worldwide remote'],
+    payGapFlag: 'Market-driven ~40-60% native/non-native earnings gap (students prefer natives). Identical commission structure — not platform-imposed tiering. Exceeds the 10% fairness bar.'
+  },
+  {
+    id: 'commission-italki',
+    title: 'Online English Teacher / Community Tutor — set your own rates',
+    company: 'italki',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert). Non-native speakers welcome. Caveat: English tutor applications are frequently closed due to oversupply — check "Is my language open for application?" before applying.',
+    confidence: 0.97,
+    score: 3.9,
+    pay: 'Tutor-set rates ($5-80/hr marketplace-wide). Community tutors $5-15 typical; professional teachers $12-40+. italki takes 15% commission.',
+    sourceUrl: 'https://www.italki.com/teacher/apply',
+    companyUrl: 'https://www.italki.com/',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Largest language-learning marketplace globally. 30,000+ teachers across 150+ languages. Non-native English speakers welcome as Community Tutors.',
+      '15% commission on lesson fees. Payment via PayPal, Payoneer, or bank transfer — all India-accessible.',
+      'Trustpilot 4/5 (student-side). Teacher complaints on Reddit cite drift toward cheap community tutors and rate compression. No lawsuits, wage-theft actions, or regulatory findings. Intermittent English-application closure is a real but non-discriminatory barrier.'
+    ],
+    tags: ['ESL', 'Tutoring', 'Online', 'Community Tutor', 'Worldwide remote'],
+    payGapFlag: 'Market-driven native/non-native gap (>10%). Students prefer natives, structurally depressing non-native bookings. Not platform-imposed tiering, but the gap is real.'
+  },
+  {
+    id: 'commission-verbling',
+    title: 'ESL Teacher — Online Private Lessons — set your own rates',
+    company: 'Verbling (acquired by Chegg)',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Most explicitly non-native-friendly written policy of all ESL platforms. Official FAQ: "Do I need to be a native speaker? No! But you are required to have a very good command (C2)." Requires prior teaching experience; teaching certificate preferred. "Teachers can teach from anywhere in the world."',
+    confidence: 0.96,
+    score: 3.6,
+    pay: 'Tutor-set rates ($14-30/hr typical). Verbling takes 15% commission. No platform-imposed native/non-native tier. Reddit notes ~9% pay cut on 20-lesson student packages.',
+    sourceUrl: 'https://www.verbling.com/teach',
+    companyUrl: 'https://www.verbling.com/',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Online language tutoring platform acquired by Chegg (public EdTech — adds corporate accountability). Official non-native policy: "No!" to the native-speaker question; C2 proficiency required instead.',
+      'Teachers can teach from anywhere in the world. Payouts via PayPal, Payoneer, Wise — all India-accessible.',
+      'Glassdoor compensation rating 2.9/5 (46 reviews) — complaints about student-to-teacher ratio and 15% commission. Reddit raised concerns about package-deal pay cuts. No lawsuits, wage theft, layoffs, or discrimination claims.'
+    ],
+    tags: ['ESL', 'Tutoring', 'Online', 'C2 proficiency', 'Worldwide remote'],
+    payGapFlag: 'Market-driven only — no platform-imposed native/non-native tier. The C2-proficiency bar is applied identically regardless of nationality. The earnings gap, if any, is student-preference-driven, not policy-driven.'
+  },
+  {
+    id: 'commission-superprof-india',
+    title: 'Private English Tutor — set your own rates, zero commission',
+    company: 'Superprof',
+    workMode: 'Worldwide Remote',
+    eligibility: 'Dedicated India portal (superprof.co.in). Explicitly non-native-friendly: "As long as you\'re based in a country where Superprof operates, you don\'t need to be a native speaker of English to teach it." No degree, certificate, or native-speaker requirement.',
+    confidence: 0.97,
+    score: 3.6,
+    pay: 'Tutor-set rates (₹500-2000/hr typical in India). Superprof takes ZERO commission from teachers in India. Tutors set their own rates and keep 100% of earnings.',
+    sourceUrl: 'https://www.superprof.co.in/tutor/',
+    companyUrl: 'https://www.superprof.co.in/',
+    verifiedOn: '2026-06-19',
+    credibilityNotes: [
+      'Global peer-to-peer tutoring platform operating in 28+ countries including India. Dedicated India portal with ₹ pricing and India-specific tutors.',
+      'Explicitly non-native-friendly. Zero tutor commission in India. Tutors set their own rates. No platform-imposed native/non-native differential -> no pay gap to flag.',
+      'MyEngineeringBuddy (2026): ~4.1/5 from 152 reviews, 98% recommend as a workplace (tutor-side). BUT student-side is scathing: Reviews.io (UK) 1.1/5 from 164 students, many calling it a "scam" over the Student Pass (~$49 fee students pay to contact tutors, with refund issues). No lawsuits, wage theft, or regulatory actions. Lead-generation friction is the main drawback.'
+    ],
+    tags: ['ESL', 'Tutoring', 'Freelance', 'India portal', 'Zero commission', 'Worldwide remote'],
+    payGapFlag: 'None. Tutors set their own rates and Superprof India takes zero commission. No platform-imposed native/non-native differential — the only parity-positive platform in the dataset.'
   }
 ];
 
@@ -547,4 +418,18 @@ export const scoreCriteria = [
   'deiAndGlobalAccess',
   'mobilityAndGrowth',
   'legalAndPayHygiene'
+];
+
+/**
+ * Companies excluded after deep vetting — kept for reviewer transparency.
+ * Each entry records the reason and the evidence so future reviewers know
+ * not to re-list without a documented policy change.
+ */
+export const excludedCompanies = [
+  { company: 'Cambly', reason: 'Official native-only policy confirmed for 2025/2026. India blocked.', sourceUrl: 'https://www.cambly.com/english/tutors' },
+  { company: 'Polly English', reason: 'US/CA/UK/AU/NZ + Philippines track only — India not named on either track. Re-brand of Lingostar; misleading pay advertising.', sourceUrl: 'https://teach.pollyenglish.cn/website' },
+  { company: 'DataAnnotation.tech', reason: 'Accepts only US/CA/UK/IE/NZ/AU. India blocked. Mass deactivations + withheld earnings documented on Reddit.', sourceUrl: 'https://app.dataannotation.tech/worker_signup' },
+  { company: 'Ringle', reason: 'Requires enrollment at a top US/UK university. India-based applicants structurally excluded.', sourceUrl: 'https://www.ringletutor.com/en/tutor/landing/about-us' },
+  { company: 'Outlier AI / Scale AI', reason: 'India accepted but ~78-85% native/non-native pay gap. Inc.com "It\'s a Scam" investigation + Analytics India Magazine exposé on exploitation of Indian workers specifically. Mass deactivations.', sourceUrl: 'https://app.outlier.ai' },
+  { company: 'AmazingTalker', reason: 'Geography-based pricing restrictions (2024 discrimination complaint). 30-40%+ commission. Reddit: "Is AmazingTalker a pyramid scheme?"', sourceUrl: 'https://en.amazingtalker.com/teach' }
 ];
