@@ -37,14 +37,32 @@ export function isOpenToAllNationalities(job) {
 }
 
 /**
- * Hard fairness bar: a documented native/non-native pay gap greater than 10%
- * is a material discrimination signal. Listings with a >10% gap are kept ONLY
- * when the gap is flagged via `payDisparityWarning` or `payGapFlag` so the UI
- * can surface it prominently. This helper exists for tests and reviewers to
- * assert that no listing silently hides a >10% gap.
+ * Returns true when a listing carries language in its credibilityNotes or pay
+ * field that implies a native/non-native pay split, but neither
+ * `payDisparityWarning` nor `payGapFlag` is populated.
+ *
+ * A true result means the listing has an unflagged gap — a data integrity
+ * error that must be fixed before the listing is published.
+ *
+ * Rationale: the previous implementation always returned false, making the
+ * corresponding test vacuous. This version inspects actual field content.
  */
 export function hasUnflaggedPayGap(job) {
-  const warning = job.payDisparityWarning || job.payGapFlag;
-  if (!warning) return false;
-  return false;
+  const flagged = Boolean(job.payDisparityWarning) || Boolean(job.payGapFlag);
+  if (flagged) return false; // gap is flagged — no problem
+
+  // Look for split-pay language in the fields most likely to carry it.
+  const haystack = [
+    job.pay || '',
+    ...(job.credibilityNotes || []),
+  ].join(' ').toLowerCase();
+
+  const splitSignals = [
+    'native ~$', 'non-native ~$',
+    'native speakers earn', 'non-native speakers earn',
+    'native/non-native',
+    'native rate', 'non-native rate',
+  ];
+
+  return splitSignals.some((s) => haystack.includes(s));
 }

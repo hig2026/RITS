@@ -177,7 +177,9 @@ function applyTheme(dark) {
 function initTheme() {
   let saved;
   try { saved = localStorage.getItem('rits-theme'); } catch { /* noop */ }
-  applyTheme(saved ? saved === 'dark' : false);
+  // Fall back to system preference when no explicit preference has been stored.
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved ? saved === 'dark' : prefersDark);
 }
 
 darkToggle.addEventListener('click', () => {
@@ -203,6 +205,7 @@ populateCategories();
 initTheme();
 renderJobs();
 renderCommission();
+// Initial toggle label — set once here; toggleCommission() owns all subsequent writes.
 commissionToggle.textContent = `Show ${commissionPlatforms.length} commission platforms`;
 
 [categoryFilter, modeFilter, scoreFilter].forEach((filter) => {
