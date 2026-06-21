@@ -1,40 +1,46 @@
 /* ===================================================================
-   RITS — HTML 4.0-era clarity
-   Teal + black + white. Text-first, minimal chrome.
-   Modern power UX stays invisible until used.
+   RITS — deep purple · indigo · black · white
+   Text-first, minimal chrome. Dark by default.
    =================================================================== */
 
-:root {
-  color-scheme: light;
-  --bg: #ffffff;
-  --ink: #000000;
-  --muted: #444444;
-  --accent: #0f5c5c;
-  --link: #0f5c5c;
-  --link-visited: #08413f;
-  --link-hover: #14757a;
-  --border: #cccccc;
-  --caution: #8b6914;
-  --danger: #8b0000;
-  --star: #8b6914;
+/* --- DARK MODE (default) --- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:           #0d0b14;
+  --surface:      #15111f;
+  --ink:          #f0eeff;
+  --muted:        #9b93c4;
+  --faint:        #5a5278;
+  --accent:       #8b7ff5;
+  --link:         #a89df7;
+  --link-visited: #7d70e0;
+  --link-hover:   #c4bafb;
+  --border:       #2e2750;
+  --caution:      #e0b44a;
+  --danger:       #e05c6e;
+  --star:         #b8a9f5;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 16px;
   line-height: 1.5;
 }
 
-[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #000000;
-  --ink: #e0e0e0;
-  --muted: #999999;
-  --accent: #4dbab8;
-  --link: #4dbab8;
-  --link-visited: #3a9a98;
-  --link-hover: #6fd2cf;
-  --border: #333333;
-  --caution: #daa520;
-  --danger: #cd5c5c;
-  --star: #daa520;
+/* --- LIGHT MODE --- */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg:           #ffffff;
+  --surface:      #f4f2ff;
+  --ink:          #0d0b14;
+  --muted:        #4a4370;
+  --faint:        #9d98bb;
+  --accent:       #4a1fb8;
+  --link:         #4a1fb8;
+  --link-visited: #341580;
+  --link-hover:   #6b3fdf;
+  --border:       #ccc8e8;
+  --caution:      #7a5500;
+  --danger:       #b91c3a;
+  --star:         #6b3fdf;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,6 +132,7 @@ nav a:hover { text-decoration: underline; }
   margin: 1em 0;
   padding: 0.75em;
   border: 1px solid var(--border);
+  background: var(--surface);
   font-size: 0.9em;
 }
 
@@ -140,6 +147,7 @@ nav a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   font-size: 0.9em;
   font-family: inherit;
+  color: var(--ink);
 }
 
 .button.primary {
@@ -148,14 +156,15 @@ nav a:hover { text-decoration: underline; }
   border-color: var(--accent);
 }
 
-.button.primary:hover { background: var(--link-hover); color: #ffffff; }
-.button.secondary:hover { background: var(--border); }
+.button.primary:hover { background: var(--link-hover); border-color: var(--link-hover); color: #ffffff; }
+.button.secondary:hover { background: var(--surface); }
 
 /* ---- FILTERS ---- */
 .filters-panel {
   margin: 1.5em 0;
   padding: 0.75em;
   border: 1px solid var(--border);
+  background: var(--surface);
 }
 
 .filters { margin-top: 0.5em; display: flex; flex-wrap: wrap; gap: 0.75em; }
@@ -254,6 +263,7 @@ select:focus, input[type="search"]:focus {
   margin: 0.5em 0;
   padding: 0.5em;
   border: 1px solid var(--caution);
+  color: var(--caution);
 }
 
 .pay-disparity-warning {
@@ -263,6 +273,7 @@ select:focus, input[type="search"]:focus {
 
 .regional-warning {
   border-color: var(--border);
+  color: var(--muted);
   font-style: italic;
 }
 
@@ -273,14 +284,14 @@ summary { cursor: pointer; font-weight: bold; }
 details ul { margin: 0.5em 0 0 1.5em; }
 details li { margin: 0.25em 0; }
 
-.tags { margin: 0.5em 0; font-size: 0.8em; color: var(--muted); }
+.tags { margin: 0.5em 0; font-size: 0.8em; color: var(--faint); }
 .tags::before { content: "Tags: "; }
 .tags span::after { content: " | "; }
 .tags span:last-child::after { content: ""; }
 
 .job-actions { margin: 0.75em 0; display: flex; gap: 0.5em; flex-wrap: wrap; }
 
-.verified { font-size: 0.75em; color: var(--muted); }
+.verified { font-size: 0.75em; color: var(--faint); }
 
 /* ---- METHOD ---- */
 .score-grid { margin-top: 1em; }
@@ -300,6 +311,7 @@ details li { margin: 0.25em 0; }
   margin: 1em 0;
   padding: 0.75em;
   border: 1px solid var(--border);
+  background: var(--surface);
   font-size: 0.9em;
 }
 
