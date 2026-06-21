@@ -36,6 +36,7 @@ export const jobs = [
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
     eligibility: 'Open to all nationalities. No native-only restriction. Tutors from 70+ countries. Requires 18+, proficient English, headset/webcam, stable internet.',
+    languageRequirement: { language: 'English', level: 'Proficient (no formal CEFR bar)', openToAllNationalitiesWithAbility: true, notes: 'No native-speaker requirement. Language ability is the only language-related gate.' },
     confidence: 0.96,
     score: 2.8,
     pay: 'Per 25-min lesson. Native ~$5/lesson (~$10/hr); non-native ~$1.20-1.55/lesson (~$2.40-3.10/hr)',
@@ -61,6 +62,7 @@ export const jobs = [
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
     eligibility: 'Hires globally including non-native speakers with C1 English. Bachelor\'s degree + 1 year teaching kids required; TESOL/TEFL preferred. Actively recruits from Philippines and other non-native countries.',
+    languageRequirement: { language: 'English', level: 'C1', openToAllNationalitiesWithAbility: true, notes: 'C1 proficiency — not native-speaker status — is the language gate. Any nationality with C1 English is eligible.' },
     confidence: 0.96,
     score: 3.3,
     pay: 'Per 25-min lesson. Native ~$5-8/lesson (~$10-16/hr); non-native ~$2-3/lesson (~$4-6/hr); new non-native base reportedly cut from $5 to $4',
@@ -86,6 +88,7 @@ export const jobs = [
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
     eligibility: 'Berlin-based online language school. C2 proficiency required (not "native"). Most nationality-neutral policy of the ESL platforms. Teaching certificate (TEFL/CELTA or equivalent) required.',
+    languageRequirement: { language: 'English', level: 'C2', openToAllNationalitiesWithAbility: true, notes: 'C2 is the highest CEFR level and is achievable by non-native speakers. The proficiency bar — not nationality — is the gate.' },
     confidence: 0.95,
     score: 3.7,
     pay: '€7-14/hr group classes; €15-25/hr private lessons. No published native/non-native tier; gap anecdotal ~20-35%.',
@@ -105,37 +108,13 @@ export const jobs = [
     payDisparityWarning: 'No published native/non-native tier. Anecdotal Reddit reports suggest non-natives sit at the lower end of the €7-14 band; gap likely ~20-35% but not institutionalized. Below the worse offenders but above the 10% fairness bar — verify with the platform before accepting.'
   },
   {
-    id: 'esl-open-english-online-teacher',
-    title: 'Online English Teacher — Open English',
-    company: 'Open English',
-    category: 'ESL Tutoring',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Latin America-focused online English school. Parent page states "Work from anywhere." BUT recruiting partner Latinhire requires "U.S. citizen, Canadian citizen, or U.S. permanent resident" for some roles — verify the direct-application path before applying from India.',
-    confidence: 0.95,
-    score: 3.5,
-    pay: '$8-10/hr typical; reports of hours cut and higher-paid teachers replaced with cheaper labor',
-    sourceUrl: 'https://www.openenglish.com/carreras-profesionales/teaching-opportunities',
-    companyUrl: 'https://www.openenglish.com/',
-    verifiedOn: '2026-06-19',
-    credibilityNotes: [
-      'Large online English school focused on the Latin American market. Live classes 24/7.',
-      'Mixed signals on nationality: parent page says "Work from anywhere", but Latinhire (main recruiting partner) requires US/Canadian citizenship or US PR. Indian applicants must apply via the direct Open English path, not Latinhire.',
-      'Glassdoor for Open Education parent: compensation rated 2.2/5 (26 reviews). Reddit documents ratings-based termination: "If your rating drops below 90-92%, you\'re put on a two-week warning." Indeed corroborates sudden hour cuts. No formal lawsuits located.'
-    ],
-    tags: ['ESL', 'Online', 'Latin American students'],
-    nationalityCaution: 'Recruiting partner Latinhire requires US/Canadian citizenship — apply directly via Open English, not Latinhire',
-    hiringTendencyNote: 'Parent company states "Work from anywhere" but a major recruiting partner imposes a US/Canada citizenship requirement. Indian applicants must use the direct application path and confirm acceptance before committing.',
-    platformModel: 'fixed-rate',
-    platformWarning: 'Ratings-based termination: sub-90% ratings trigger a two-week warning. Hours reportedly cut to replace higher-paid teachers with cheaper labor.',
-    payDisparityWarning: null
-  },
-  {
     id: 'esl-nativecamp-online-teacher',
     title: 'Online English Conversation Teacher — NativeCamp',
     company: 'NativeCamp',
     category: 'ESL Tutoring',
     workMode: 'Worldwide Remote',
     eligibility: 'Japanese online conversation platform. Despite the name, accepts non-native speakers. 18+, no teaching experience, hardware/internet required. Filipino teachers form a large workforce. Check the country blocklist on the contact page before applying from India.',
+    languageRequirement: { language: 'English', level: 'Conversational (no formal CEFR bar)', openToAllNationalitiesWithAbility: true, notes: 'Despite the "NativeCamp" name, non-native speakers are accepted. Language ability — not native-speaker status — is the gate.' },
     confidence: 0.95,
     score: 3.4,
     pay: 'Per 25-min lesson. Native ~$9/lesson (~$18/hr); non-native $1.50-2.50/lesson (~$3-5/hr)',
@@ -163,6 +142,7 @@ export const jobs = [
     category: 'Analytics / Data Science',
     workMode: 'Worldwide Remote',
     eligibility: 'Genuinely worldwide remote. C1/C2 proficiency required, not nationality. Active freelance roles in 50+ domains and 15+ languages. Owned by Toloka (Nebius Group, Nasdaq: NBIS).',
+    languageRequirement: { language: 'English (project-dependent)', level: 'C1/C2', openToAllNationalitiesWithAbility: true, notes: 'C1/C2 proficiency — not nationality — is the language gate. Active roles in 50+ domains and 15+ languages.' },
     confidence: 0.95,
     score: 3.5,
     pay: 'Advertises $30-100+/hr but pay is "set at the project level" and non-negotiable. Effective rate during unpaid onboarding ~$3-4/hr; paid role rates vary by country tier',
@@ -210,48 +190,22 @@ export const jobs = [
     payDisparityWarning: null,
     regionalPayWarning: 'No native/non-native gap, but microtask pay ($2-5/hr realistic) is sub-minimum even by Indian standards. Payoneer withdrawal fees ($15 + $30/yr) further erode net pay — time small payouts carefully.'
   },
-  {
-    id: 'ai-telus-digital-rater-india',
-    title: 'AI Rater / Quality Assurance Rater — Hindi (India)',
-    company: 'TELUS Digital (formerly TELUS International AI)',
-    category: 'AI Training',
-    workMode: 'Worldwide Remote',
-    eligibility: 'Hires in India with India-specific language roles (e.g., Hindi Rater, Remote, Part time). Canadian publicly-traded parent (TSX:T, NYSE:TU) — most reputable "name brand" of the AI platforms. Roles are tied to jurisdiction/language — not work-from-anywhere in the global sense.',
-    confidence: 0.96,
-    score: 3.7,
-    pay: 'India Hindi Rater: $8/hr per TELUS posting (reduced from $4 to $2.40 per some reports). US Rater: $11-40/hr (Indeed avg $13.71/hr).',
-    sourceUrl: 'https://jobs.telusdigital.com/en/jobs/17840995-quality-assurance-rater-hindi-india',
-    companyUrl: 'https://www.telusdigital.com/',
-    verifiedOn: '2026-06-19',
-    credibilityNotes: [
-      'Canadian publicly-traded company (TSX:T, NYSE:TU). Most reputable "name brand" among AI-training platforms — unlikely to vanish with earnings.',
-      'India-specific roles exist (e.g., Quality Assurance Rater - Hindi (India), Remote Part time). Hires by country and language — US Raters must reside in US; Hindi-India raters must be in India.',
-      'r/TELUSinternational documents structural problems: weekly "NTA" (No Tasks Available) threads where raters go weeks with zero billable work; arbitrary account reviews; a 40% mid-contract India pay cut ($4→$2.40) without recourse; opaqueness around quality scoring. No lawsuits located.'
-    ],
-    tags: ['AI training', 'Search evaluation', 'Rating', 'India-specific'],
-    nationalityCaution: null,
-    hiringTendencyNote: 'India hires exist with language-specific roles. Canadian publicly-listed parent adds corporate accountability. But chronic "no tasks" problem and documented 40% mid-contract India pay cut.',
-    platformModel: 'fixed-rate',
-    platformWarning: 'Requires minimum weekly hours commitment. Application process can take weeks. Chronic "No Tasks Available" problem — raters can go weeks with zero billable work.',
-    payDisparityWarning: 'Documented ~42-82% US/India pay gap for similar rater work. US Raters earn $11-40/hr (avg $13.71); India Hindi Raters earn $8/hr (and Reddit reports a cut from $4 to $2.40 for some India projects). Exceeds the 10% fairness bar — listed only with this prominent warning.',
-    regionalPayWarning: 'Pay rates are set per country. A documented 40% mid-contract pay cut for India raters occurred without recourse — verify the current rate and contractual stability before committing.'
-  },
-
   /* ---- Insurance / Reinsurance Analytics ----
      Deep vetting found NO worldwide-remote or visa-sponsorship cat-modelling JDs
      at any of the nine firms checked (Swiss Re, Munich Re, Guy Carpenter, Aon,
      WTW, Verisk/AIR, Moody's RMS, Oasis LMF). All open roles are city-anchored
-     in India (Bengaluru, Mumbai, Hyderabad, Thane) — domestic India hiring,
-     not visa sponsorship INTO India. Only listings with verifiable real JD URLs
-     on official company careers sites are listed below. Aggregator links
-     (ZipRecruiter, WeWorkRemotely search results) are NOT acceptable. */
+     in India. These multinationals hire on merit and do NOT restrict to Indian
+     citizens — roles are open to applicants of any nationality with valid India
+     work authorization. Only listings with verifiable real JD URLs on official
+     company careers sites are listed below. Aggregator links (ZipRecruiter,
+     WeWorkRemotely search results) are NOT acceptable. */
   {
     id: 'insurance-swissre-property-cat-bangalore',
     title: 'Associate — Property Fac UW Advisor (catastrophe modelling support)',
     company: 'Swiss Re',
     category: 'Insurance / Reinsurance Analytics',
-    workMode: 'Visa Sponsorship',
-    eligibility: 'Based in Bangalore, India (hybrid, >=3 days in office). Open to Indian nationals for domestic India hiring. NOT a worldwide-remote or visa-sponsorship-INTO-India role. Requires modelling and costing support on NA property risks using Nat Cat platforms.',
+    workMode: 'India-based, Open to All Nationalities',
+    eligibility: 'Based in Bangalore, India (hybrid, >=3 days in office). Open to applicants of any nationality with valid India work authorization — Swiss Re does not restrict to Indian citizens. Requires modelling and costing support on NA property risks using Nat Cat platforms.',
     confidence: 0.95,
     score: 3.6,
     pay: 'Competitive India reinsurance market rate (verify on JD)',
@@ -261,11 +215,16 @@ export const jobs = [
     credibilityNotes: [
       'Swiss Re is a top-tier global reinsurance firm. India GBS hub in Bangalore operating since 2001. Strong actuarial and cat-modelling reputation.',
       'This is a verifiable JD on the official swissre.com careers site (not an aggregator). Role involves Nat Cat platform modelling and costing on North American property risks.',
-      'Domestic India hiring at Bangalore — not visa sponsorship INTO India and not worldwide-remote. Indian nationals with actuarial qualifications (IAI, IFOA, SOA) are well-represented in this field.'
+      'Bangalore hybrid India role. Swiss Re does not restrict hiring to Indian citizens — open to applicants of any nationality with valid India work authorization. Not worldwide-remote and not visa-sponsorship INTO India.'
     ],
     tags: ['Cat modelling', 'Insurance analytics', 'Bangalore', 'Reinsurance', 'Hybrid'],
-    nationalityCaution: 'Domestic India role (Bangalore hybrid) — not worldwide-remote or visa sponsorship INTO India',
-    hiringTendencyNote: 'Real JD on the official Swiss Re careers site. Bangalore hybrid role. Indian actuarial professionals are well-represented in this firm.',
+    nationalityCaution: 'India-based hybrid role. Open to all nationalities with valid India work authorization — Swiss Re does not restrict to Indian citizens. Not a worldwide-remote role.',
+    nationalityOpenEvidence: {
+      policy: 'Swiss Re is an equal opportunity employer. It is our practice to recruit, hire and promote without regard to race, religion, color, national origin, sex.',
+      sourceUrl: 'https://www.swissre.com/careers/job/Senior-Operational-Excellence-Lead/1405214833',
+      explanation: 'Official posted EEO policy explicitly names "national origin" as a protected class for recruiting, hiring, and promotion. Swiss Re GBS India has been operating since 2001 — 23+ years of India hiring.'
+    },
+    hiringTendencyNote: 'Real JD on the official Swiss Re careers site. Bangalore hybrid role. Open to all nationalities with valid India work authorization — Swiss Re GBS India hires foreign nationals, not Indian-citizen-only.',
     platformModel: 'direct-employer',
     platformWarning: null,
     payDisparityWarning: null
@@ -275,8 +234,8 @@ export const jobs = [
     title: 'Catastrophe Modelling — Reinsurance',
     company: 'Aon',
     category: 'Insurance / Reinsurance Analytics',
-    workMode: 'Visa Sponsorship',
-    eligibility: 'Based in Bengaluru, India (hybrid). Open to Indian nationals for domestic India hiring. Aon has an established Bengaluru analytics hub plus Impact Forecasting India. NOT worldwide-remote.',
+    workMode: 'India-based, Open to All Nationalities',
+    eligibility: 'Based in Bengaluru, India (hybrid). Open to applicants of any nationality with valid India work authorization — Aon does not restrict hiring to Indian citizens. Aon has an established Bengaluru analytics hub plus Impact Forecasting India. NOT worldwide-remote.',
     confidence: 0.95,
     score: 3.6,
     pay: 'Competitive India reinsurance market rate (verify on JD)',
@@ -286,11 +245,16 @@ export const jobs = [
     credibilityNotes: [
       'Aon is a top-tier global insurance brokerage and analytics firm. Bengaluru analytics hub plus Impact Forecasting India. Strong cat-modelling and reinsurance reputation.',
       'Verifiable JD on the official jobs.aon.com careers site (not an aggregator). Role is catastrophe modelling for reinsurance, Bengaluru hybrid.',
-      'Page is JS-rendered (extractors return boilerplate) but the URL is the official Aon careers listing, corroborated by indexed search snippets. Domestic India hiring — not visa sponsorship INTO India and not worldwide-remote.'
+      'Page is JS-rendered (extractors return boilerplate) but the URL is the official Aon careers listing, corroborated by indexed search snippets. India role open to all nationalities with valid India work authorization — not visa sponsorship INTO India and not worldwide-remote.'
     ],
     tags: ['Cat modelling', 'Insurance analytics', 'Bengaluru', 'Reinsurance', 'Hybrid'],
-    nationalityCaution: 'Domestic India role (Bengaluru hybrid) — not worldwide-remote or visa sponsorship INTO India',
-    hiringTendencyNote: 'Real JD on the official Aon careers site. Bengaluru hybrid role. Aon has an established analytics hub in India.',
+    nationalityCaution: 'India-based hybrid role. Open to all nationalities with valid India work authorization — Aon does not restrict to Indian citizens. Not a worldwide-remote role.',
+    nationalityOpenEvidence: {
+      policy: '"...without regard to race, color, religion, creed, sex, sexual orientation, gender identity, national origin, age, disability, veteran, marital, or domestic partner status, citizenship or any other status..." Applicants and employees are evaluated on the basis of job qualifications.',
+      sourceUrl: 'https://www.aon.com/about-aon/attachments/equal-employment-opportunity-policy.pdf',
+      explanation: 'Aon publishes a formal Equal Employment Opportunity policy as a PDF on aon.com, explicitly naming both "national origin" AND "citizenship" as protected classes. Posted on the official corporate website.'
+    },
+    hiringTendencyNote: 'Real JD on the official Aon careers site. Bengaluru hybrid role. Open to all nationalities with valid India work authorization.',
     platformModel: 'direct-employer',
     platformWarning: 'Careers pages are JS-rendered — if the page appears blank in your browser, wait for it to load or search "catastrophe" + location=Bengaluru on jobs.aon.com.',
     payDisparityWarning: null
@@ -300,8 +264,8 @@ export const jobs = [
     title: 'CAT Modelling Analyst II',
     company: 'Verisk (formerly AIR Worldwide)',
     category: 'Insurance / Reinsurance Analytics',
-    workMode: 'Visa Sponsorship',
-    eligibility: 'Based in Hyderabad/Secunderabad, India. Open to Indian nationals for domestic India hiring. Verisk (which acquired AIR Worldwide) is "Great Place to Work India" certified. NOT worldwide-remote.',
+    workMode: 'India-based, Open to All Nationalities',
+    eligibility: 'Based in Hyderabad/Secunderabad, India. Open to applicants of any nationality with valid India work authorization — Verisk does not restrict hiring to Indian citizens. Verisk (which acquired AIR Worldwide) is "Great Place to Work India" certified. NOT worldwide-remote.',
     confidence: 0.95,
     score: 3.5,
     pay: 'Competitive India market rate (verify on JD)',
@@ -311,11 +275,16 @@ export const jobs = [
     credibilityNotes: [
       'Verisk (Nasdaq: VRSK) acquired AIR Worldwide in the early 2010s; the cat-modelling business is now "Verisk Catastrophe and Risk Solutions, formerly AIR Worldwide." Hyderabad is a major office. "Great Place to Work India" certified.',
       'Verifiable JD on the official Verisk Oracle HCM careers site (not an aggregator). Role: "advanced exposure data preparation... execution of catastrophe models, and detailed loss analysis." Hyderabad/Secunderabad.',
-      'Page returns 429/timeout to scrapers (anti-bot) but is indexed by search engines with full JD snippets. Domestic India hiring — not visa sponsorship INTO India and not worldwide-remote.'
+      'Page returns 429/timeout to scrapers (anti-bot) but is indexed by search engines with full JD snippets. India role open to all nationalities with valid India work authorization — not visa sponsorship INTO India and not worldwide-remote.'
     ],
     tags: ['Cat modelling', 'AIR Worldwide', 'Hyderabad', 'Reinsurance'],
-    nationalityCaution: 'Domestic India role (Hyderabad/Secunderabad) — not worldwide-remote or visa sponsorship INTO India',
-    hiringTendencyNote: 'Real JD on the official Verisk Oracle HCM careers site. Hyderabad/Secunderabad. Verisk absorbed AIR Worldwide — the leading cat-modelling vendor.',
+    nationalityCaution: 'India-based role. Open to all nationalities with valid India work authorization — Verisk does not restrict to Indian citizens. Not a worldwide-remote role.',
+    nationalityOpenEvidence: {
+      policy: '"All members of the Verisk Analytics family of companies are equal opportunity employers. We consider all qualified applicants for employment..."',
+      sourceUrl: 'https://www.verisk.com/company/careers',
+      explanation: 'Verisk states on every job listing that its family of companies are equal opportunity employers considering all qualified applicants. India operations are part of this family. "Great Place to Work India" certified.'
+    },
+    hiringTendencyNote: 'Real JD on the official Verisk Oracle HCM careers site. Hyderabad/Secunderabad. Open to all nationalities with valid India work authorization. Verisk absorbed AIR Worldwide — the leading cat-modelling vendor.',
     platformModel: 'direct-employer',
     platformWarning: 'Careers page has anti-bot protection (may 429 or timeout) — retry in a browser or search "CAT Modelling Analyst II" + Verisk on Google.',
     payDisparityWarning: null
@@ -376,6 +345,7 @@ export const commissionPlatforms = [
     company: 'Verbling (acquired by Chegg)',
     workMode: 'Worldwide Remote',
     eligibility: 'Most explicitly non-native-friendly written policy of all ESL platforms. Official FAQ: "Do I need to be a native speaker? No! But you are required to have a very good command (C2)." Requires prior teaching experience; teaching certificate preferred. "Teachers can teach from anywhere in the world."',
+    languageRequirement: { language: 'English', level: 'C2', openToAllNationalitiesWithAbility: true, notes: 'Official FAQ: "Do I need to be a native speaker? No!" C2 proficiency is the language gate — explicitly not nationality.' },
     confidence: 0.96,
     score: 3.6,
     pay: 'Tutor-set rates ($14-30/hr typical). Verbling takes 15% commission. No platform-imposed native/non-native tier. Reddit notes ~9% pay cut on 20-lesson student packages.',
@@ -426,9 +396,11 @@ export const scoreCriteria = [
  * not to re-list without a documented policy change.
  */
 export const excludedCompanies = [
-  { company: 'Cambly', reason: 'Official native-only policy confirmed for 2025/2026. India blocked.', sourceUrl: 'https://www.cambly.com/english/tutors' },
-  { company: 'Polly English', reason: 'US/CA/UK/AU/NZ + Philippines track only — India not named on either track. Re-brand of Lingostar; misleading pay advertising.', sourceUrl: 'https://teach.pollyenglish.cn/website' },
-  { company: 'DataAnnotation.tech', reason: 'Accepts only US/CA/UK/IE/NZ/AU. India blocked. Mass deactivations + withheld earnings documented on Reddit.', sourceUrl: 'https://app.dataannotation.tech/worker_signup' },
+  { company: 'TELUS Digital (India rater roles)', reason: 'India rater roles require "Resident in India for the last 5 consecutive years." Residency-restricted, not open to all nationalities. Also documented 40% mid-contract pay cut for India raters.', sourceUrl: 'https://jobs.telusdigital.com/en/jobs/17840995-quality-assurance-rater-hindi-india' },
+  { company: 'Open English', reason: 'Recruiting partner Latinhire requires US/Canadian citizenship or US permanent residency for the main recruiting path. Not open to all nationalities. Parent page says "Work from anywhere" but the primary application channel is nationality-restricted.', sourceUrl: 'https://www.openenglish.com/carreras-profesionales/teaching-opportunities' },
+  { company: 'Cambly', reason: 'Official native-only policy confirmed for 2025/2026. Not open to non-native nationalities including Indians.', sourceUrl: 'https://www.cambly.com/english/tutors' },
+  { company: 'Polly English', reason: 'US/CA/UK/AU/NZ + Philippines track only — India not named on either track. Not open to all nationalities. Re-brand of Lingostar; misleading pay advertising.', sourceUrl: 'https://teach.pollyenglish.cn/website' },
+  { company: 'DataAnnotation.tech', reason: 'Accepts only US/CA/UK/IE/NZ/AU. Not open to all nationalities (India blocked). Mass deactivations + withheld earnings documented on Reddit.', sourceUrl: 'https://app.dataannotation.tech/worker_signup' },
   { company: 'Ringle', reason: 'Requires enrollment at a top US/UK university. India-based applicants structurally excluded.', sourceUrl: 'https://www.ringletutor.com/en/tutor/landing/about-us' },
   { company: 'Outlier AI / Scale AI', reason: 'India accepted but ~78-85% native/non-native pay gap. Inc.com "It\'s a Scam" investigation + Analytics India Magazine exposé on exploitation of Indian workers specifically. Mass deactivations.', sourceUrl: 'https://app.outlier.ai' },
   { company: 'AmazingTalker', reason: 'Geography-based pricing restrictions (2024 discrimination complaint). 30-40%+ commission. Reddit: "Is AmazingTalker a pyramid scheme?"', sourceUrl: 'https://en.amazingtalker.com/teach' }

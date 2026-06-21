@@ -8,7 +8,8 @@ export function formatStars(score) {
 }
 
 export function isEligibleForListing(job) {
-  return job.confidence >= 0.95 && ['Worldwide Remote', 'Visa Sponsorship'].includes(job.workMode);
+  const validModes = ['Worldwide Remote', 'Visa Sponsorship', 'India-based, Open to All Nationalities'];
+  return job.confidence >= 0.95 && validModes.includes(job.workMode) && isOpenToAllNationalities(job);
 }
 
 export function getCriteriaCount() {
@@ -18,6 +19,21 @@ export function getCriteriaCount() {
 /** Combined list of standard listings plus commission-based platforms. */
 export function allListings() {
   return [...jobs, ...commissionPlatforms];
+}
+
+/**
+ * Hard nationality bar (enforced 2026-06-19): a role in India must be open to
+ * applicants of ALL nationalities (with valid India work authorization), and
+ * a remote/overseas role must be open to all nationalities including Indians.
+ * Any role that restricts by citizenship or long-term residency fails this check.
+ * Listings that fail are excluded and recorded in `excludedCompanies`.
+ */
+export function isOpenToAllNationalities(job) {
+  const blocked = job.nationalityBlocksAllNationalities;
+  const caution = (job.nationalityCaution || '').toLowerCase();
+  const blockSignals = ['us citizen', 'canadian citizen', 'u.s. citizen', 'native only', 'resident in india for the last', 'must reside in', 'u.s. permanent resident', 'us/uk/au/nz', 'six-country block'];
+  if (blocked) return false;
+  return !blockSignals.some((s) => caution.includes(s));
 }
 
 /**

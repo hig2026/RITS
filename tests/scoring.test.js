@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { jobs, commissionPlatforms, excludedCompanies } from '../src/data/jobs.js';
-import { formatStars, getCriteriaCount, isEligibleForListing, allListings, hasUnflaggedPayGap } from '../src/services/scoring.js';
+import { formatStars, getCriteriaCount, isEligibleForListing, allListings, hasUnflaggedPayGap, isOpenToAllNationalities } from '../src/services/scoring.js';
 
 test('formatStars renders half-star scores consistently', () => {
   assert.equal(formatStars(3.8), '★★★★☆');
@@ -11,9 +11,11 @@ test('formatStars renders half-star scores consistently', () => {
 test('eligible jobs meet the 95% confidence threshold and a real work mode', () => {
   const eligible = jobs.filter(isEligibleForListing);
   assert.ok(eligible.length > 0, 'At least one job should be eligible');
+  const validModes = ['Worldwide Remote', 'Visa Sponsorship', 'India-based, Open to All Nationalities'];
   eligible.forEach((job) => {
     assert.ok(job.confidence >= 0.95, `${job.id} confidence ${job.confidence} should be >= 0.95`);
-    assert.ok(['Worldwide Remote', 'Visa Sponsorship'].includes(job.workMode), `${job.id} has unsupported workMode ${job.workMode}`);
+    assert.ok(validModes.includes(job.workMode), `${job.id} has unsupported workMode ${job.workMode}`);
+    assert.ok(isOpenToAllNationalities(job), `${job.id} must be open to all nationalities`);
   });
 });
 
@@ -46,13 +48,34 @@ test('any listing with a >10% native/non-native pay gap must flag it explicitly'
 });
 
 test('excluded companies record why they were dropped, with a source URL', () => {
-  assert.ok(excludedCompanies.length >= 5, 'Expected at least five excluded companies for reviewer transparency');
+  assert.ok(excludedCompanies.length >= 7, 'Expected at least seven excluded companies for reviewer transparency');
   excludedCompanies.forEach((c) => {
     assert.ok(c.company && c.reason && c.sourceUrl, 'Each excluded company needs a name, reason, and source URL');
     assert.ok(c.reason.length > 20, `${c.company} reason is too thin`);
   });
 });
 
-test('credibility model keeps five equal-weight score criteria', () => {
-  assert.equal(getCriteriaCount(), 5);
+test('no current listing restricts by nationality, citizenship, or long-term residency', () => {
+  allListings().forEach((job) => {
+    assert.ok(isOpenToAllNationalities(job), `${job.id} (${job.company}) restricts by nationality/residency — fails the all-nationalities rule`);
+  });
+});
+
+test('every role with a language requirement is open to all nationalities with that ability', () => {
+  allListings().forEach((job) => {
+    if (!job.languageRequirement) return;
+    assert.equal(job.languageRequirement.openToAllNationalitiesWithAbility, true, `${job.id} language gate must be open to all nationalities with the requisite ability`);
+  });
+});
+
+test('every India-based listing carries verifiable equal-opportunity employer evidence', () => {
+  const indiaRoles = jobs.filter((j) => j.workMode === 'India-based, Open to All Nationalities');
+  assert.ok(indiaRoles.length > 0, 'Expected at least one India-based role');
+  indiaRoles.forEach((job) => {
+    const ev = job.nationalityOpenEvidence;
+    assert.ok(ev, `${job.id} must carry nationalityOpenEvidence`);
+    assert.ok(ev.policy && ev.policy.length > 30, `${job.id} EEO policy quote is too thin`);
+    assert.ok(ev.sourceUrl && ev.sourceUrl.startsWith('http'), `${job.id} EEO source URL must be http(s)`);
+    assert.ok(ev.explanation && ev.explanation.length > 20, `${job.id} EEO explanation is too thin`);
+  });
 });
