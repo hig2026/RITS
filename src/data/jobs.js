@@ -211,10 +211,10 @@ export const jobs = [
     pay: 'Competitive India reinsurance market rate (verify on JD)',
     sourceUrl: 'https://www.swissre.com/careers/job/Associate-Property-Fac-UW-Advisor/1399206333',
     companyUrl: 'https://www.swissre.com/careers',
-    verifiedOn: '2026-06-19',
+    verifiedOn: '2026-06-21',
     credibilityNotes: [
       'Swiss Re is a top-tier global reinsurance firm. India GBS hub in Bangalore operating since 2001. Strong actuarial and cat-modelling reputation.',
-      'This is a verifiable JD on the official swissre.com careers site (not an aggregator). Role involves Nat Cat platform modelling and costing on North American property risks.',
+      'JD URL verified live 2026-06-21 on the official swissre.com careers site (not an aggregator). Role involves "natural catastrophe and man-made risk modelling" and "modeling and costing support on North America property risks" using Swiss Re\'s proprietary risk model platforms.',
       'Bangalore hybrid India role. Swiss Re does not restrict hiring to Indian citizens — open to applicants of any nationality with valid India work authorization. Not worldwide-remote and not visa-sponsorship INTO India.'
     ],
     tags: ['Cat modelling', 'Insurance analytics', 'Bangalore', 'Reinsurance', 'Hybrid'],
@@ -231,21 +231,21 @@ export const jobs = [
   },
   {
     id: 'insurance-aon-cat-modelling-bangalore',
-    title: 'Catastrophe Modelling — Reinsurance',
+    title: 'Client Solutions Senior Consultant — Impact Forecasting (catastrophe modelling)',
     company: 'Aon',
     category: 'Insurance / Reinsurance Analytics',
     workMode: 'India-based, Open to All Nationalities',
-    eligibility: 'Based in Bengaluru, India (hybrid). Open to applicants of any nationality with valid India work authorization — Aon does not restrict hiring to Indian citizens. Aon has an established Bengaluru analytics hub plus Impact Forecasting India. NOT worldwide-remote.',
+    eligibility: 'Based in Bengaluru, India. Open to applicants of any nationality with valid India work authorization — Aon does not restrict hiring to Indian citizens. Part of Impact Forecasting, Aon\'s catastrophe model development centre. NOT worldwide-remote.',
     confidence: 0.95,
     score: 3.6,
     pay: 'Competitive India reinsurance market rate (verify on JD)',
-    sourceUrl: 'https://jobs.aon.com/jobs/101204?lang=en-us',
-    companyUrl: 'https://jobs.aon.com/',
-    verifiedOn: '2026-06-19',
+    sourceUrl: 'https://jobs.aon.com/jobs/101294?lang=en-us',
+    companyUrl: 'https://www.aon.com/careers',
+    verifiedOn: '2026-06-21',
     credibilityNotes: [
       'Aon is a top-tier global insurance brokerage and analytics firm. Bengaluru analytics hub plus Impact Forecasting India. Strong cat-modelling and reinsurance reputation.',
-      'Verifiable JD on the official jobs.aon.com careers site (not an aggregator). Role is catastrophe modelling for reinsurance, Bengaluru hybrid.',
-      'Page is JS-rendered (extractors return boilerplate) but the URL is the official Aon careers listing, corroborated by indexed search snippets. India role open to all nationalities with valid India work authorization — not visa sponsorship INTO India and not worldwide-remote.'
+      'JD URL verified live 2026-06-21 on the official jobs.aon.com careers site (not an aggregator). Role is "Client Solutions Senior Consultant – Impact Forecasting" — part of Aon\'s catastrophe model development centre. Bengaluru.',
+      'JD text confirmed: "working closely with colleagues, internal stakeholders and external clients, validating and implementing catastrophe risk models and providing advisory support on Impact Forecasting\'s proprietary software platform, ELEMENTS." India role open to all nationalities with valid India work authorization.'
     ],
     tags: ['Cat modelling', 'Insurance analytics', 'Bengaluru', 'Reinsurance', 'Hybrid'],
     nationalityCaution: 'India-based hybrid role. Open to all nationalities with valid India work authorization — Aon does not restrict to Indian citizens. Not a worldwide-remote role.',
@@ -256,7 +256,7 @@ export const jobs = [
     },
     hiringTendencyNote: 'Real JD on the official Aon careers site. Bengaluru hybrid role. Open to all nationalities with valid India work authorization.',
     platformModel: 'direct-employer',
-    platformWarning: 'Careers pages are JS-rendered — if the page appears blank in your browser, wait for it to load or search "catastrophe" + location=Bengaluru on jobs.aon.com.',
+    platformWarning: 'Aon careers pages are JS-rendered — wait for the page to load in your browser. JD verified live on 2026-06-21 with full text confirming cat-modelling responsibilities.',
     payDisparityWarning: null
   },
   {
@@ -269,24 +269,24 @@ export const jobs = [
     confidence: 0.95,
     score: 3.5,
     pay: 'Competitive India market rate (verify on JD)',
-    sourceUrl: 'https://fa-ewmy-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/3645',
+    sourceUrl: 'https://in.talent.com/view?id=619004443160551108',
     companyUrl: 'https://www.verisk.com/company/careers',
-    verifiedOn: '2026-06-19',
+    verifiedOn: '2026-06-21',
     credibilityNotes: [
       'Verisk (Nasdaq: VRSK) acquired AIR Worldwide in the early 2010s; the cat-modelling business is now "Verisk Catastrophe and Risk Solutions, formerly AIR Worldwide." Hyderabad is a major office. "Great Place to Work India" certified.',
-      'Verifiable JD on the official Verisk Oracle HCM careers site (not an aggregator). Role: "advanced exposure data preparation... execution of catastrophe models, and detailed loss analysis." Hyderabad/Secunderabad.',
-      'Page returns 429/timeout to scrapers (anti-bot) but is indexed by search engines with full JD snippets. India role open to all nationalities with valid India work authorization — not visa sponsorship INTO India and not worldwide-remote.'
+      'JD URL verified live 2026-06-21: "CAT Modelling Analyst II — advanced exposure data preparation and validation, accurate configuration of insurance and reinsurance financial structures, execution of catastrophe models (Earthquake, Wind, Flood, and other perils), and detailed loss analysis." Hyderabad/Secunderabad.',
+      'Page on talent.com shows full JD text visibly (no login required). Backup direct URL on Verisk\'s Oracle Cloud HCM: https://fa-ewmy-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/3615 (Manager, Consulting and Client Services, Catastrophe Modelling). India role open to all nationalities with valid India work authorization.'
     ],
-    tags: ['Cat modelling', 'AIR Worldwide', 'Hyderabad', 'Reinsurance'],
+    tags: ['Cat modelling', 'AIR Worldwide', 'Hyderabad', 'Reinsurance', 'Analyst II'],
     nationalityCaution: 'India-based role. Open to all nationalities with valid India work authorization — Verisk does not restrict to Indian citizens. Not a worldwide-remote role.',
     nationalityOpenEvidence: {
       policy: '"All members of the Verisk Analytics family of companies are equal opportunity employers. We consider all qualified applicants for employment..."',
       sourceUrl: 'https://www.verisk.com/company/careers',
       explanation: 'Verisk states on every job listing that its family of companies are equal opportunity employers considering all qualified applicants. India operations are part of this family. "Great Place to Work India" certified.'
     },
-    hiringTendencyNote: 'Real JD on the official Verisk Oracle HCM careers site. Hyderabad/Secunderabad. Open to all nationalities with valid India work authorization. Verisk absorbed AIR Worldwide — the leading cat-modelling vendor.',
+    hiringTendencyNote: 'Live JD verified 2026-06-21 on talent.com with full cat-modelling responsibilities visible. Hyderabad/Secunderabad. Open to all nationalities with valid India work authorization. Verisk absorbed AIR Worldwide — the leading cat-modelling vendor.',
     platformModel: 'direct-employer',
-    platformWarning: 'Careers page has anti-bot protection (may 429 or timeout) — retry in a browser or search "CAT Modelling Analyst II" + Verisk on Google.',
+    platformWarning: 'Talent.com mirror of Verisk JD — full text visible without login. Direct Verisk Oracle Cloud HCM URL (https://fa-ewmy-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/3615) also works in browser.',
     payDisparityWarning: null
   }
 ];

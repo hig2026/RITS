@@ -17,6 +17,8 @@ import json
 import re
 import sys
 import time
+import urllib.request
+import urllib.error
 from datetime import date
 
 try:
@@ -24,6 +26,88 @@ try:
 except ImportError:
     print("ERROR: playwright not installed. Run: pip install playwright", file=sys.stderr)
     sys.exit(1)
+
+
+# ---------------------------------------------------------------------------
+#  Source board registry
+# ---------------------------------------------------------------------------
+# Each entry: name, board_type ('api' | 'scrape'), category focus, and notes.
+# Boards where JD text is visible without signup/paywall are preferred.
+# Paywalled boards (Remotive, DailyRemote, Virtual Vocations, FlexJobs) are
+# NOT included — their JD text is hidden behind a subscription.
+SOURCE_BOARDS = [
+    {
+        'name': 'Himalayas',
+        'url': 'https://himalayas.app',
+        'api_url': 'https://himalayas.app/jobs/api/search',
+        'board_type': 'api',
+        'category_focus': 'general remote; data analytics, dev, AI',
+        'notes': 'Free public Remote Jobs API (no auth). JD text visible on individual pages. Best source for scraping at scale.',
+    },
+    {
+        'name': 'We Work Remotely',
+        'url': 'https://weworkremotely.com',
+        'board_type': 'scrape',
+        'category_focus': 'general remote; data, dev, customer support',
+        'notes': 'Individual post pages show full JDs. Listings tagged "Anywhere in the World" are globally eligible. Avoid linking to search/category pages directly.',
+    },
+    {
+        'name': 'Jobspresso',
+        'url': 'https://jobspresso.co',
+        'board_type': 'scrape',
+        'category_focus': 'curated remote; data, dev, design',
+        'notes': 'Full JD visible without signup. Jobs tagged "Worldwide" are open to all nationalities. Clean, scrape-friendly HTML.',
+    },
+    {
+        'name': "Dave's ESL Cafe",
+        'url': 'https://www.eslcafe.com',
+        'board_type': 'scrape',
+        'category_focus': 'ESL/EFL worldwide; international, China, Korea',
+        'notes': 'Job board at /jobs/international posts daily ESL vacancies with full JD text. Free to browse, no signup, no paywall.',
+    },
+    {
+        'name': 'Working Nomads',
+        'url': 'https://www.workingnomads.com',
+        'board_type': 'scrape',
+        'category_focus': 'remote digital jobs; data, dev, marketing',
+        'notes': 'Category pages (e.g., /remote-data-analyst-jobs) list jobs worldwide. JD text visible on individual pages.',
+    },
+    {
+        'name': '4 Day Week',
+        'url': 'https://4dayweek.io',
+        'board_type': 'scrape',
+        'category_focus': 'remote with 4-day work weeks; data, dev',
+        'notes': '~231 remote data jobs. JD text visible without signup.',
+    },
+    {
+        'name': 'RemoteOK',
+        'url': 'https://remoteok.com',
+        'board_type': 'api',
+        'api_url': 'https://remoteok.com/api',
+        'category_focus': 'remote; AI/ML, dev, data',
+        'notes': 'JSON API available. Full JD text visible. Has RSS feeds too.',
+    },
+]
+
+# Paywalled sources — JD text NOT visible without subscription. Not scraped.
+EXCLUDED_SOURCE_BOARDS = [
+    {'name': 'Remotive', 'reason': 'Paywalls 99.6% of jobs; hides company names on free tier.'},
+    {'name': 'DailyRemote', 'reason': 'Individual JD pages show only placeholder text; full JD behind "Unlock this job" paywall.'},
+    {'name': 'Virtual Vocations', 'reason': 'Only category counts visible without subscription. If a visible JD snippet is found, find a free mirror elsewhere.'},
+    {'name': 'FlexJobs', 'reason': 'Subscription required to view any JD.'},
+    {'name': 'Pangian', 'reason': 'Unreliable — example JD URLs return 404.'},
+]
+
+
+def fetch_json(url, timeout=10):
+    """Fetch JSON from a public API endpoint without Playwright."""  # noqa: D401
+    req = urllib.request.Request(url, headers={'User-Agent': 'RITS-Scraper/1.0'})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode('utf-8'))
+    except (urllib.error.URLError, json.JSONDecodeError, TimeoutError) as e:
+        print(f"  JSON fetch failed for {url}: {e}", file=sys.stderr)
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -57,6 +141,11 @@ def assess_global_access(text):
     for kw in NATIONALITY_RESTRICTION_KEYWORDS:
         if kw in text_lower:
             return False, 0.2, 'Explicit nationality restriction detected'
+    # Hard reject: residency-gated roles (e.g. TELUS India "Resident in India for the last 5 consecutive years")
+    residency_kw = ['resident in india for the last', 'resident in the united states for the last', 'must reside in', 'must be resident in']
+    for kw in residency_kw:
+        if kw in text_lower:
+            return False, 0.3, 'Residency requirement detected — not open to all nationalities'
 
     global_signals = sum(1 for kw in GLOBAL_ACCESS_KEYWORDS if kw in text_lower)
     caution_signals = sum(1 for kw in NATIVE_SPEAKER_CAUTION_KEYWORDS if kw in text_lower)
@@ -266,16 +355,6 @@ def get_known_platforms():
             'hiringTendencyNote': 'Open to all nationalities. Two tiers: Professional Teacher (cert required) and Community Tutor (no cert). Non-native English speakers welcome.',
         },
         {
-            'title': 'Online English Conversation Tutor',
-            'company': 'Cambly',
-            'sourceUrl': 'https://www.cambly.com/en/tutors',
-            'companyUrl': 'https://www.cambly.com/',
-            'confidence': 0.85,
-            'nationalityCaution': 'Native speaker preference noted; verify non-native acceptance',
-            'source': 'cambly.com',
-            'hiringTendencyNote': 'Historically native-speaker-only; some reports of expanded acceptance. Payment via PayPal. Verify current nationality policy.',
-        },
-        {
             'title': 'Online English Tutor — Flexible Schedule',
             'company': 'Tutorful',
             'sourceUrl': 'https://tutorful.co.uk/become-a-tutor',
@@ -304,16 +383,6 @@ def get_known_platforms():
             'nationalityCaution': None,
             'source': 'engoo.com',
             'hiringTendencyNote': 'Global tutor recruitment. Non-native English speakers accepted. Fixed per-lesson rate set by platform.',
-        },
-        {
-            'title': 'Online English Teacher — Group & Private Classes',
-            'company': 'Open English',
-            'sourceUrl': 'https://www.openenglish.com/en/work-with-us/',
-            'companyUrl': 'https://www.openenglish.com/',
-            'confidence': 0.90,
-            'nationalityCaution': 'Native speaker preference noted; verify non-native acceptance',
-            'source': 'openenglish.com',
-            'hiringTendencyNote': 'Latin America-focused online English school. Primarily recruits native speakers but non-natives with strong qualifications may apply.',
         },
         {
             'title': 'ESL / EFL Teacher — Online Platform',
