@@ -38,30 +38,39 @@ export function isOpenToAllNationalities(job) {
 
 /**
  * Returns true when a listing carries language in its credibilityNotes or pay
- * field that implies a native/non-native pay split, but neither
+ * field that implies a concrete native/non-native pay split, but neither
  * `payDisparityWarning` nor `payGapFlag` is populated.
  *
  * A true result means the listing has an unflagged gap — a data integrity
  * error that must be fixed before the listing is published.
  *
- * Rationale: the previous implementation always returned false, making the
- * corresponding test vacuous. This version inspects actual field content.
+ * Signal design: match only phrases that assert a numeric disparity
+ * (e.g. "native ~$5/lesson vs non-native ~$1.20") rather than phrases that
+ * merely mention the concept (e.g. "no native/non-native gap"). This avoids
+ * false positives on records that explicitly deny a gap.
  */
 export function hasUnflaggedPayGap(job) {
   const flagged = Boolean(job.payDisparityWarning) || Boolean(job.payGapFlag);
   if (flagged) return false; // gap is flagged — no problem
 
-  // Look for split-pay language in the fields most likely to carry it.
+  // Inspect fields most likely to carry concrete pay-split language.
   const haystack = [
     job.pay || '',
     ...(job.credibilityNotes || []),
   ].join(' ').toLowerCase();
 
+  // Only signals that assert a numeric/rate split, not those that negate one.
+  // "native ~$" and "non-native ~$" uniquely appear in listings that describe
+  // actual dollar figures for each tier side-by-side.
   const splitSignals = [
-    'native ~$', 'non-native ~$',
-    'native speakers earn', 'non-native speakers earn',
-    'native/non-native',
-    'native rate', 'non-native rate',
+    'native ~$',
+    'non-native ~$',
+    'native speakers earn',
+    'non-native speakers earn',
+    'native rate vs',
+    'non-native rate vs',
+    'natives ~$',
+    'non-natives ~$',
   ];
 
   return splitSignals.some((s) => haystack.includes(s));
