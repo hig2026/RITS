@@ -177,9 +177,8 @@ function applyTheme(dark) {
 function initTheme() {
   let saved;
   try { saved = localStorage.getItem('rits-theme'); } catch { /* noop */ }
-  // Fall back to system preference when no explicit preference has been stored.
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved ? saved === 'dark' : prefersDark);
+  // Dark is the site default. Respect an explicit stored choice; otherwise always dark.
+  applyTheme(saved ? saved === 'dark' : true);
 }
 
 darkToggle.addEventListener('click', () => {
