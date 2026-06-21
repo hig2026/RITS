@@ -71,6 +71,12 @@ function buildJobCard(job) {
   const regionalPay = job.regionalPayWarning
     ? `<p class="regional-warning">Note: ${esc(job.regionalPayWarning)}</p>`
     : '';
+  const langReq = job.languageRequirement
+    ? `<p class="lang-requirement"><strong>Language:</strong> ${esc(job.languageRequirement.language)} (${esc(job.languageRequirement.level)}) — open to all nationalities with the requisite ability. ${esc(job.languageRequirement.notes || '')}</p>`
+    : '';
+  const eeoEvidence = job.nationalityOpenEvidence
+    ? `<details><summary>Equal-opportunity employer evidence</summary><blockquote>${esc(job.nationalityOpenEvidence.policy)}</blockquote><p><a href="${esc(job.nationalityOpenEvidence.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source: official EEO policy</a></p><p>${esc(job.nationalityOpenEvidence.explanation)}</p></details>`
+    : '';
   article.innerHTML = `
     <div class="job-card__topline">
       <span class="pill">${esc(job.category)}</span>
@@ -83,6 +89,7 @@ function buildJobCard(job) {
       <span>${esc(job.pay)}</span>
     </div>
     <p>${esc(job.eligibility)}</p>
+    ${langReq}
     ${hiringNote}
     ${platformBadge}
     ${payDisparity}
@@ -97,6 +104,7 @@ function buildJobCard(job) {
         ${job.credibilityNotes.map((note) => `<li>${esc(note)}</li>`).join('')}
       </ul>
     </details>
+    ${eeoEvidence}
     <div class="tags">${job.tags.map((tag) => `<span>${esc(tag)}</span>`).join('')}</div>
     <div class="job-actions">
       <a class="button primary" href="${esc(job.sourceUrl)}" target="_blank" rel="noopener noreferrer">View JD</a>
