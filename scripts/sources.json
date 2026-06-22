@@ -1,0 +1,46 @@
+{
+  "_comment": "RITS canonical source registry.",
+  "version": 1,
+  "lastUpdated": "2026-06-22",
+  "vetConfig": {
+    "primaryModel": "gemini-2.0-flash",
+    "escalationModel": "gemini-2.5-pro",
+    "cacheDir": "scripts/employer-cache",
+    "vetLogFile": "scripts/vet-log.json",
+    "candidatesOutput": "scripts/candidates.json",
+    "refreshIntervalDays": 30,
+    "confidenceThreshold": 0.95
+  },
+  "domains": ["ESL Tutoring", "AI Training", "Analytics / Data Science", "English Writing / Editing"],
+  "scrapeBoards": [
+    {"id":"tefl-com","name":"TEFL.com","domain":"ESL Tutoring","url":"https://www.tefl.com/job-seeker/search.html","active":true},
+    {"id":"eslcafe","name":"ESL Cafe","domain":"ESL Tutoring","url":"https://www.eslcafe.com/jobs/online","active":true},
+    {"id":"eslgorilla","name":"ESL Gorilla","domain":"ESL Tutoring","url":"https://eslgorilla.com/jobs/online","active":true},
+    {"id":"problogger","name":"ProBlogger","domain":"English Writing / Editing","url":"https://problogger.com/jobs/","active":true},
+    {"id":"crowdgen","name":"CrowdGen by Appen","domain":"AI Training","url":"https://crowdgen.com/find-work","active":true},
+    {"id":"telus-ai","name":"TELUS International AI","domain":"AI Training","url":"https://www.telusinternational.com/solutions/ai-data-solutions/ai-community","active":true},
+    {"id":"imerit","name":"iMerit","domain":"AI Training","url":"https://imerit.net/careers/","active":true}
+  ],
+  "knownPlatforms": [
+    {"id":"engoo","company":"Engoo / DMM Eikaiwa","domain":"ESL Tutoring","applyUrl":"https://engoo.com/app/teach","inJobsJs":true},
+    {"id":"novakid","company":"Novakid","domain":"ESL Tutoring","applyUrl":"https://novakidteachers.recruitee.com/o/esl-teacher","inJobsJs":true},
+    {"id":"lingoda","company":"Lingoda","domain":"ESL Tutoring","applyUrl":"https://www.lingoda.com/en/become-a-teacher","inJobsJs":true},
+    {"id":"nativecamp","company":"NativeCamp","domain":"ESL Tutoring","applyUrl":"https://nativecamp.net/tutors","inJobsJs":true},
+    {"id":"learnlight","company":"Learnlight","domain":"ESL Tutoring","applyUrl":"https://careers.learnlight.com/careers-2/teaching-positions/","inJobsJs":false},
+    {"id":"voxy","company":"Voxy","domain":"ESL Tutoring","applyUrl":"https://voxy.com/about/jobs/","inJobsJs":false},
+    {"id":"twenix","company":"Twenix","domain":"ESL Tutoring","applyUrl":"https://www.twenix.es/en/teachers","inJobsJs":false},
+    {"id":"mindrift","company":"Mindrift","domain":"AI Training","applyUrl":"https://mindrift.ai/apply","inJobsJs":true},
+    {"id":"toloka","company":"Toloka AI","domain":"AI Training","applyUrl":"https://toloka.ai/tolokers","inJobsJs":true},
+    {"id":"preply","company":"Preply","domain":"ESL Tutoring","applyUrl":"https://preply.com/en/teach","inJobsJs":false},
+    {"id":"italki","company":"italki","domain":"ESL Tutoring","applyUrl":"https://www.italki.com/en/teacher/apply","inJobsJs":false},
+    {"id":"verbling","company":"Verbling","domain":"ESL Tutoring","applyUrl":"https://www.verbling.com/teach","inJobsJs":false}
+  ],
+  "excluded": [
+    {"id":"cambly","company":"Cambly","reason":"Native-only policy. India blocked.","excludedOn":"2026-06-19","permanent":true},
+    {"id":"dataannotation-tech","company":"DataAnnotation.tech","reason":"US/CA/UK/IE/NZ/AU only. India blocked.","excludedOn":"2026-06-19","permanent":true},
+    {"id":"ringle","company":"Ringle","reason":"Requires top US/UK university enrollment.","excludedOn":"2026-06-19","permanent":true},
+    {"id":"outlier-ai","company":"Outlier AI / Scale AI","reason":"78-85% native/non-native pay gap. Scam investigation.","excludedOn":"2026-06-19","permanent":false,"reReviewTrigger":"Pay gap <50% and scam reports cease 6+ months."},
+    {"id":"amazingtalker","company":"AmazingTalker","reason":"Geography pricing restrictions. 2024 discrimination complaint. 30-40%+ commission.","excludedOn":"2026-06-19","permanent":false},
+    {"id":"51talk","company":"51Talk","reason":"Contradictory pay data. Depressed rates. India eligibility unconfirmed.","excludedOn":"2026-06-22","permanent":false}
+  ]
+}
