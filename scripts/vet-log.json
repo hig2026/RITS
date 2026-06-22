@@ -1,0 +1,8 @@
+{
+  "totalCalls": 0,
+  "totalPromptTokens": 0,
+  "totalOutputTokens": 0,
+  "estimatedCostUsdIfPaid": 0.0,
+  "freeTierDailyRequestLimit": 1500,
+  "runs": []
+}
