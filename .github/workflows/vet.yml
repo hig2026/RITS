@@ -29,7 +29,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
 
       - name: Install dependencies
         run: pip install google-generativeai
@@ -51,10 +50,11 @@ jobs:
         run: python scripts/vet.py --stale --dry-run
 
       - name: Commit cache and log
-        if: inputs.mode != 'dry-run'
+        if: github.event_name != 'workflow_dispatch' || inputs.mode != 'dry-run'
         run: |
           git config user.name "RITS Vet Bot"
           git config user.email "actions@github.com"
-          git add scripts/employer-cache/ scripts/vet-log.json scripts/candidates.json
+          git add scripts/employer-cache/ scripts/vet-log.json || true
+          git add scripts/candidates.json || true
           git diff --cached --quiet || git commit -m "chore: employer vet $(date +%Y-%m-%d)"
           git push
