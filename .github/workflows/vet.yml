@@ -1,0 +1,60 @@
+name: Vet Employers
+
+on:
+  schedule:
+    - cron: '0 2 1 * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Vetting mode'
+        required: true
+        default: 'stale'
+        type: choice
+        options: [stale, employer, dry-run]
+      employer_id:
+        description: 'Employer ID (mode=employer only)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  vet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install google-generativeai
+
+      - name: Vet stale
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'stale')
+        env:
+          GAPI: ${{ secrets.GAPI }}
+        run: python scripts/vet.py --stale
+
+      - name: Vet single employer
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'employer'
+        env:
+          GAPI: ${{ secrets.GAPI }}
+        run: python scripts/vet.py --employer "${{ inputs.employer_id }}"
+
+      - name: Dry run
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'dry-run'
+        run: python scripts/vet.py --stale --dry-run
+
+      - name: Commit cache and log
+        if: inputs.mode != 'dry-run'
+        run: |
+          git config user.name "RITS Vet Bot"
+          git config user.email "actions@github.com"
+          git add scripts/employer-cache/ scripts/vet-log.json scripts/candidates.json
+          git diff --cached --quiet || git commit -m "chore: employer vet $(date +%Y-%m-%d)"
+          git push
