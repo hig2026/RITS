@@ -94,23 +94,22 @@ def call_gemini(company, job_text, model_name, api_key, log):
     prompt = f"COMPANY: {company}\n\nJOB TEXT:\n{job_text[:3200]}\n\nReturn the vetting JSON now."
     try:
         tools = 'google_search' if 'flash' in model_name else None
-        kwargs = {'tools': tools} if tools else {}
-        model = genai.GenerativeModel(model_name, system_instruction=RUBRIC, **kwargs)
+        model = genai.GenerativeModel(model_name, system_instruction=RUBRIC)
         resp = model.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
-                response_mime_type='application/json', temperature=0.1, max_output_tokens=512
+                temperature=0.1, max_output_tokens=600
             )
         )
+        raw = resp.text
+        print(f"  RAW: {raw[:300]}", file=sys.stderr)
         u = resp.usage_metadata
         cost = record_tokens(log, model_name, u.prompt_token_count, u.candidates_token_count)
         print(f"    {u.prompt_token_count}+{u.candidates_token_count} tokens (${cost:.5f})", file=sys.stderr)
-        r = json.loads(resp.text)
+        r = json.loads(raw)
         r['_model'] = model_name
         return r
-    except Exception as e:
-        print(f"    ERROR: {e}", file=sys.stderr); return None
-
+        sys.exit(1)
 def vet_candidate(candidate, sources, api_key, log):
     company = candidate.get('company', candidate.get('id', 'unknown'))
     eid = candidate.get('id', re.sub(r'[^a-z0-9]+', '-', company.lower()))
