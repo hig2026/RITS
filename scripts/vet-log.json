@@ -4,5 +4,11 @@
   "totalOutputTokens": 0,
   "estimatedCostUsdIfPaid": 0.0,
   "freeTierDailyRequestLimit": 1500,
-  "runs": []
+  "runs": [
+    {
+      "date": "2026-06-22",
+      "vetted": 0,
+      "passed": 0
+    }
+  ]
 }
