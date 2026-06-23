@@ -54,7 +54,8 @@ jobs:
         run: |
           git config user.name "RITS Vet Bot"
           git config user.email "actions@github.com"
-          git add scripts/employer-cache/ scripts/vet-log.json || true
-          git add scripts/candidates.json || true
+          git status
+          git add -A scripts/
+          git status --short
           git diff --cached --quiet || git commit -m "chore: employer vet $(date +%Y-%m-%d)"
           git push
