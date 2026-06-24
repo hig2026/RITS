@@ -55,6 +55,7 @@ jobs:
           git config user.name "RITS Vet Bot"
           git config user.email "actions@github.com"
           git status
+          find scripts -maxdepth 2 -type f | sort
           git add -A scripts/
           git status --short
           git diff --cached --quiet || git commit -m "chore: employer vet $(date +%Y-%m-%d)"
