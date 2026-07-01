@@ -25,8 +25,50 @@ The site is intentionally static so it can be built, deployed, and hosted for fr
 | Package/runtime | Node.js built-in test runner; no paid dependencies |
 | Local server | `python3 -m http.server 4173` |
 | Hosting | GitHub Pages, Cloudflare Pages free tier, or Netlify free tier |
-| Data updates | Manual edits now; free GitHub Actions can be added later |
-| Future storage | Supabase free tier, Cloudflare D1 free tier, or GitHub-backed JSON workflow |
+| Data updates | Intelligent scraper with Gemini AI + Supabase cache (see below) |
+| Database | Supabase free tier — stores scraped jobs, source boards, scrape run logs |
+| AI classification | Google Gemini API (key stored in GitHub secrets) |
+
+## Intelligent scraping
+
+The scraper (`scripts/scrape-intelligent.py`) runs on a daily GitHub Actions schedule
+and can also be triggered manually. It:
+
+1. Reads source boards from Supabase (or falls back to a built-in list).
+2. Scrapes each board — API-first (Himalayas, RemoteOK), then HTML scrape (WWR, Jobspresso, ESL Cafe, Working Nomads, 4 Day Week, TEFL.com).
+3. Pre-filters each listing with keyword-based global-accessibility checks.
+4. Uses Gemini AI to classify category, summarize the JD, and assess nationality openness.
+5. Deduplicates against the Supabase cache via content_hash (SHA256 of title+company+url).
+6. Inserts new jobs, updates `last_seen` for existing ones, marks missing jobs as inactive.
+7. Logs each run to `scrape_runs` for audit.
+
+### Running locally
+
+```bash
+# Dry run (no DB writes, no Gemini)
+python3 scripts/scrape-intelligent.py --dry-run --no-gemini --max-jobs 5
+
+# Full run with Gemini (requires GEMINI_API_KEY in env or .env)
+python3 scripts/scrape-intelligent.py --max-jobs 25
+
+# Scrape a single board
+python3 scripts/scrape-intelligent.py --board himalayas
+```
+
+### Database schema
+
+Three tables in Supabase (all RLS-enabled, anon-readable for the no-auth frontend):
+
+- `source_boards` — stable job board entry points (8 boards seeded)
+- `scraped_jobs` — individual listings, deduplicated by `content_hash`
+- `scrape_runs` — audit log of each scrape execution
+
+### Frontend integration
+
+The frontend (`src/services/supabase.js`) fetches active scraped jobs from Supabase
+on page load and merges them with the static `jobs.js` data. If Supabase is unreachable,
+the static data is used as fallback. A "last scrape" indicator appears in the footer
+when scraped data is available.
 
 ## Run locally
 

@@ -1,0 +1,60 @@
+name: Scrape Jobs
+
+on:
+  schedule:
+    # Run daily at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      board:
+        description: 'Specific board ID to scrape (empty = all)'
+        required: false
+        default: ''
+      use_gemini:
+        description: 'Use Gemini AI for classification'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    name: Scrape job boards
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run intelligent scraper
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          ARGS="--max-jobs 25"
+          if [ -n "${{ github.event.inputs.board }}" ]; then
+            ARGS="$ARGS --board ${{ github.event.inputs.board }}"
+          fi
+          if [ "${{ github.event.inputs.use_gemini }}" = "false" ]; then
+            ARGS="$ARGS --no-gemini"
+          fi
+          python3 scripts/scrape-intelligent.py $ARGS
+
+      - name: Commit updated data
+        run: |
+          git config user.name "RITS Scraper Bot"
+          git config user.email "actions@github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: daily scrape update $(date -u +%Y-%m-%d)"
+            git push
+          fi

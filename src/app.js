@@ -1,7 +1,9 @@
 import { jobs, commissionPlatforms, excludedCompanies } from './data/jobs.js';
 import { formatStars, isEligibleForListing } from './services/scoring.js';
+import { fetchScrapedJobs, fetchLastScrapeRun } from './services/supabase.js';
 
-const eligibleJobs = jobs.filter(isEligibleForListing);
+let allJobs = jobs.filter(isEligibleForListing);
+let scrapedJobs = [];
 
 const categoryFilter = document.querySelector('#category-filter');
 const modeFilter = document.querySelector('#mode-filter');
@@ -22,7 +24,7 @@ function esc(str) {
 }
 
 function populateCategories() {
-  const categories = [...new Set(eligibleJobs.map((job) => job.category))].sort();
+  const categories = [...new Set(allJobs.map((job) => job.category))].sort();
   categories.forEach((category) => {
     const option = document.createElement('option');
     option.value = category;
@@ -37,7 +39,7 @@ function renderJobs() {
   const minScore = Number(scoreFilter.value);
   const query = (searchInput.value || '').toLowerCase().trim();
 
-  const filteredJobs = eligibleJobs.filter((job) => {
+  const filteredJobs = allJobs.filter((job) => {
     const categoryMatch = selectedCategory === 'all' || job.category === selectedCategory;
     const modeMatch = selectedMode === 'all' || job.workMode === selectedMode;
     const scoreMatch = job.score >= minScore;
@@ -208,3 +210,33 @@ commissionToggle.textContent = `Show ${commissionPlatforms.length} commission pl
 [categoryFilter, modeFilter, scoreFilter].forEach((filter) => {
   filter.addEventListener('change', renderJobs);
 });
+
+// Load scraped jobs from Supabase and merge with static jobs
+(async () => {
+  try {
+    const [scraped, lastRun] = await Promise.all([
+      fetchScrapedJobs(),
+      fetchLastScrapeRun(),
+    ]);
+
+    if (scraped.length > 0) {
+      scrapedJobs = scraped;
+      // Merge: scraped jobs first (freshest), then static jobs not already present
+      const scrapedUrls = new Set(scraped.map((j) => j.sourceUrl));
+      const staticOnly = allJobs.filter((j) => !scrapedUrls.has(j.sourceUrl));
+      allJobs = [...scraped, ...staticOnly];
+      populateCategories();
+      renderJobs();
+    }
+
+    if (lastRun) {
+      const runDate = new Date(lastRun.started_at).toLocaleDateString();
+      const indicator = document.createElement('p');
+      indicator.style.cssText = 'font-size:0.8em;color:var(--muted);text-align:center;margin-top:0.5em';
+      indicator.textContent = `Last scrape: ${runDate} — ${lastRun.jobs_added} new, ${lastRun.jobs_expired} expired`;
+      document.querySelector('.footer')?.prepend(indicator);
+    }
+  } catch {
+    // Supabase unavailable — static jobs only, already rendered
+  }
+})();
